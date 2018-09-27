@@ -2,11 +2,10 @@ package cn.albumenj.view.DepartmentPage;
 
 import cn.albumenj.Application;
 import cn.albumenj.model.department;
-import cn.albumenj.model.user;
 import cn.albumenj.service.DepartmentService;
-import cn.albumenj.util.flushPage;
-import cn.albumenj.util.printLine;
-import cn.albumenj.util.requestEnter;
+import cn.albumenj.util.FlushPage;
+import cn.albumenj.util.PrintLine;
+import cn.albumenj.util.RequestEnter;
 
 public class ModifyDepartmentPage {
     private Application application;
@@ -21,24 +20,24 @@ public class ModifyDepartmentPage {
     }
 
     public void show(){
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
 
         System.out.print("请输入要查询部门编号：");
-        department department = departmentService.fetchDepartmentByID(requestEnter.requestInt());
+        department department = departmentService.fetchDepartmentByID(RequestEnter.requestInt());
 
         System.out.println("   编号     名字 ");
         System.out.println(department.getID() + " " + department.getName());
         System.out.println();
 
         System.out.print("是否修改（是 1 /否 2）：");
-        switch (requestEnter.requestInt()){
+        switch (RequestEnter.requestInt()){
             case 1:
                 System.out.print("请输入修改后部门编号：");
-                department.setID(requestEnter.requestInt());
+                department.setID(RequestEnter.requestInt());
 
                 System.out.print("请输入修改后部门名称：");
-                department.setName(requestEnter.requestString());
+                department.setName(RequestEnter.requestString());
 
                 boolean ret = departmentService.modify(department);
                 if(ret)
@@ -51,6 +50,6 @@ public class ModifyDepartmentPage {
             default:
                 break;
         }
-        printLine.print();
+        PrintLine.print();
     }
 }

@@ -1,6 +1,6 @@
 package cn.albumenj.util;
 
-public class printLine {
+public class PrintLine {
     public static void print()
     {
         System.out.println();

@@ -3,9 +3,9 @@ package cn.albumenj.view.DepartmentPage;
 import cn.albumenj.Application;
 import cn.albumenj.model.department;
 import cn.albumenj.service.DepartmentService;
-import cn.albumenj.util.flushPage;
-import cn.albumenj.util.printLine;
-import cn.albumenj.util.requestEnter;
+import cn.albumenj.util.FlushPage;
+import cn.albumenj.util.PrintLine;
+import cn.albumenj.util.RequestEnter;
 
 public class AddDepartmentPage {
 
@@ -21,15 +21,15 @@ public class AddDepartmentPage {
     }
 
     public void show(){
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
 
         department addDepartment = new department();
         System.out.print("请输入增加部门的编号：");
-        addDepartment.setID(requestEnter.requestInt());
+        addDepartment.setID(RequestEnter.requestInt());
 
         System.out.print("请输入增加部门的名字：");
-        addDepartment.setName(requestEnter.requestString());
+        addDepartment.setName(RequestEnter.requestString());
 
         System.out.println("正在添加请等待！");
         boolean ret = departmentService.add(addDepartment);
@@ -39,6 +39,6 @@ public class AddDepartmentPage {
         else
             System.out.println("添加失败！");
 
-        printLine.print();
+        PrintLine.print();
     }
 }

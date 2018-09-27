@@ -1,9 +1,9 @@
 package cn.albumenj.view.MenuPage;
 
 import cn.albumenj.Application;
-import cn.albumenj.util.flushPage;
-import cn.albumenj.util.printLine;
-import cn.albumenj.util.requestEnter;
+import cn.albumenj.util.FlushPage;
+import cn.albumenj.util.PrintLine;
+import cn.albumenj.util.RequestEnter;
 
 public class StaffManagePage {
     private Application application;
@@ -13,8 +13,8 @@ public class StaffManagePage {
     }
 
     public int show(){
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
         System.out.println("尊敬的"+application.loginedUser.getName()+"，您好：");
 
         for (int i = 0;i<10;i++)
@@ -50,9 +50,9 @@ public class StaffManagePage {
         }
 
         System.out.print("请输出您要进入的功能（数字）：");
-        int method = requestEnter.requestInt();
+        int method = RequestEnter.requestInt();
 
-        printLine.print();
+        PrintLine.print();
         return method;
     }
 }

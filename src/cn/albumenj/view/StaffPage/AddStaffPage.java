@@ -5,10 +5,10 @@ import cn.albumenj.model.department;
 import cn.albumenj.model.user;
 import cn.albumenj.service.DepartmentService;
 import cn.albumenj.service.UserService;
-import cn.albumenj.util.flushPage;
-import cn.albumenj.util.passwordDecode;
-import cn.albumenj.util.printLine;
-import cn.albumenj.util.requestEnter;
+import cn.albumenj.util.FlushPage;
+import cn.albumenj.util.PasswordDecode;
+import cn.albumenj.util.PrintLine;
+import cn.albumenj.util.RequestEnter;
 
 import java.util.List;
 
@@ -30,24 +30,24 @@ public class AddStaffPage {
     }
 
     public void show(){
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
 
         user addUser = new user();
         System.out.print("请输入增加人员的学号：");
-        addUser.setID(requestEnter.requestInt());
+        addUser.setID(RequestEnter.requestInt());
 
         System.out.print("请输入增加人员的密码：");
-        addUser.setPassword(passwordDecode.EncoderByMd5(requestEnter.requestString()));
+        addUser.setPassword(PasswordDecode.EncoderByMd5(RequestEnter.requestString()));
 
         System.out.print("请输入增加人员的姓名：");
-        addUser.setName(requestEnter.requestString());
+        addUser.setName(RequestEnter.requestString());
 
         System.out.print("请输入增加人员的电话号码：");
-        addUser.setPhone(requestEnter.requestString());
+        addUser.setPhone(RequestEnter.requestString());
 
         System.out.print("请输入增加人员的QQ：");
-        addUser.setQq(requestEnter.requestString());
+        addUser.setQq(RequestEnter.requestString());
 
 
         List<department> departments = departmentService.fetchAllDepartment();
@@ -59,7 +59,7 @@ public class AddStaffPage {
         }
 
         System.out.print("请输入增加人员的部门：");
-        addUser.setDepartment(requestEnter.requestInt());
+        addUser.setDepartment(RequestEnter.requestInt());
 
         System.out.println("权限编号如下如下");
         System.out.println("1   会长");
@@ -67,7 +67,7 @@ public class AddStaffPage {
         System.out.println("3   普通成员");
 
         System.out.print("请输入增加人员的权限：");
-        addUser.setPermission(requestEnter.requestInt());
+        addUser.setPermission(RequestEnter.requestInt());
 
         System.out.println("正在添加请等待！");
         boolean ret = userService.add(addUser);
@@ -77,7 +77,7 @@ public class AddStaffPage {
         else
             System.out.println("添加失败！");
 
-        printLine.print();
+        PrintLine.print();
     }
 
 }

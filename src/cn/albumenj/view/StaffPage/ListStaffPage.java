@@ -2,9 +2,9 @@ package cn.albumenj.view.StaffPage;
 
 import cn.albumenj.model.user;
 import cn.albumenj.service.UserService;
-import cn.albumenj.util.flushPage;
-import cn.albumenj.util.printLine;
-import cn.albumenj.util.requestEnter;
+import cn.albumenj.util.FlushPage;
+import cn.albumenj.util.PrintLine;
+import cn.albumenj.util.RequestEnter;
 
 import java.util.List;
 
@@ -16,8 +16,8 @@ public class ListStaffPage {
     }
 
     public void showALL(){
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
 
         List<user> users = userService.fetchAllUser();
 
@@ -29,16 +29,16 @@ public class ListStaffPage {
 
         System.out.println();
         System.out.println("请输入任意内容以返回。");
-        requestEnter.requestString();
-        printLine.print();
+        RequestEnter.requestString();
+        PrintLine.print();
     }
 
     public void show(){
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
 
         System.out.print("请输入要查询人员学号：");
-        user user = userService.fetchUserByID(requestEnter.requestInt());
+        user user = userService.fetchUserByID(RequestEnter.requestInt());
 
         System.out.println("   学号     姓名     电话     QQ    权限");
         System.out.println(user.getID() + " " +
@@ -46,7 +46,7 @@ public class ListStaffPage {
 
         System.out.println();
         System.out.println("请输入任意内容以返回。");
-        requestEnter.requestString();
-        printLine.print();
+        RequestEnter.requestString();
+        PrintLine.print();
     }
 }

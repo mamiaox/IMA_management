@@ -1,6 +1,6 @@
 package cn.albumenj.service;
 
-import cn.albumenj.dao.mysqlConnect;
+import cn.albumenj.dao.SqlCommit;
 import cn.albumenj.model.department;
 
 import java.util.LinkedHashMap;
@@ -12,11 +12,11 @@ public class DepartmentService {
     private static List<department> departmentData;
 
     public boolean add(department addDepartment){
-        return mysqlConnect.insert("department",departmentToData(addDepartment));
+        return SqlCommit.insert("department",departmentToData(addDepartment));
     }
 
     public boolean delete(department deleteDepartment){
-        return mysqlConnect.delete("department",deleteDepartment.getNo());
+        return SqlCommit.delete("department",deleteDepartment.getNo());
     }
 
     public List<department> fetchAllDepartment(){
@@ -34,7 +34,7 @@ public class DepartmentService {
     }
 
     public boolean modify(department modifyDepartment){
-        return mysqlConnect.update("department",modifyDepartment.getNo(),departmentToData(modifyDepartment));
+        return SqlCommit.update("department",modifyDepartment.getNo(),departmentToData(modifyDepartment));
     }
 
     private department dataToDepartment(Map<String,String> data){
@@ -53,7 +53,7 @@ public class DepartmentService {
     }
 
     private void flashDepartmentData(){
-        departmentData = dataListToDepartment(mysqlConnect.select("department"));
+        departmentData = dataListToDepartment(SqlCommit.select("department"));
     }
 
     private Map<String,String> departmentToData(department department){

@@ -1,5 +1,5 @@
 package cn.albumenj;
-import cn.albumenj.dao.mysqlConnect;
+import cn.albumenj.dao.SqlCommit;
 import cn.albumenj.model.*;
 import cn.albumenj.service.DepartmentService;
 import cn.albumenj.service.UserService;
@@ -18,7 +18,7 @@ public class Application {
 
     public static void main(String[] args) {
 
-        mysqlConnect.connect();
+        //SqlCommit.connect();
         //Login Page
         Application app = new Application();
         UserService userService = new UserService();

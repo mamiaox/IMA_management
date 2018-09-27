@@ -5,10 +5,10 @@ import cn.albumenj.model.department;
 import cn.albumenj.model.user;
 import cn.albumenj.service.DepartmentService;
 import cn.albumenj.service.UserService;
-import cn.albumenj.util.flushPage;
-import cn.albumenj.util.passwordDecode;
-import cn.albumenj.util.printLine;
-import cn.albumenj.util.requestEnter;
+import cn.albumenj.util.FlushPage;
+import cn.albumenj.util.PasswordDecode;
+import cn.albumenj.util.PrintLine;
+import cn.albumenj.util.RequestEnter;
 
 import java.util.List;
 
@@ -30,11 +30,11 @@ public class ModifyStaffPage {
     }
 
     public void show(){
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
 
         System.out.print("请输入要查询人员学号：");
-        user user = userService.fetchUserByID(requestEnter.requestInt());
+        user user = userService.fetchUserByID(RequestEnter.requestInt());
 
         System.out.println("   学号     姓名     电话     QQ    权限");
         System.out.println(user.getID() + " " +
@@ -42,23 +42,23 @@ public class ModifyStaffPage {
         System.out.println();
 
         System.out.print("是否修改（是 1 /否 2）：");
-        switch (requestEnter.requestInt()){
+        switch (RequestEnter.requestInt()){
             case 1:
                 System.out.print("请输入修改后人员的学号：");
-                user.setID(requestEnter.requestInt());
+                user.setID(RequestEnter.requestInt());
 
                 System.out.print("请输入修改后人员的姓名：");
-                user.setName(requestEnter.requestString());
+                user.setName(RequestEnter.requestString());
 
                 System.out.print("请输入增加人员的密码：");
-                user.setPassword(passwordDecode.EncoderByMd5(requestEnter.requestString()));
+                user.setPassword(PasswordDecode.EncoderByMd5(RequestEnter.requestString()));
 
                 System.out.print("请输入修改后人员的电话号码：");
-                user.setPhone(requestEnter.requestString());
+                user.setPhone(RequestEnter.requestString());
 
                 System.out.print("请输入修改后人员的QQ：");
 
-                user.setQq(requestEnter.requestString());
+                user.setQq(RequestEnter.requestString());
                 List<department> departments = departmentService.fetchAllDepartment();
                 System.out.println("部门编号如下");
                 System.out.println("   编号     名字 ");
@@ -68,7 +68,7 @@ public class ModifyStaffPage {
                 }
 
                 System.out.print("请输入修改后人员的部门：");
-                user.setDepartment(requestEnter.requestInt());
+                user.setDepartment(RequestEnter.requestInt());
 
                 System.out.println("权限编号如下如下");
                 System.out.println("1   会长");
@@ -76,7 +76,7 @@ public class ModifyStaffPage {
                 System.out.println("3   普通成员");
 
                 System.out.print("请输入修改后人员的权限：");
-                user.setPermission(requestEnter.requestInt());
+                user.setPermission(RequestEnter.requestInt());
 
                 boolean ret = userService.modify(user);
                 if(ret)
@@ -89,6 +89,6 @@ public class ModifyStaffPage {
             default:
                 break;
         }
-        printLine.print();
+        PrintLine.print();
     }
 }

@@ -3,7 +3,7 @@ package cn.albumenj.util;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class requestEnter {
+public class RequestEnter {
 
     static Scanner scanner = new Scanner(System.in);
 

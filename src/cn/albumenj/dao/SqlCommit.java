@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class mysqlConnect {
+public class SqlCommit {
     private static final String URL = "jdbc:mysql://localhost:3306/ima_management?serverTimezone=UTC&useSSL=false";
     private static final String USER = "root";
     private static final String PASSWORD = "123456";
@@ -50,8 +50,8 @@ public class mysqlConnect {
         List<Map<String,String>> list = new LinkedList<>();
         String sql = "SELECT * FROM `ima_management`.`" + table+"`";
         try {
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
+            //Statement statement = con.createStatement();
+            ResultSet rs = new PoolSubmit(sql).query();
             ResultSetMetaData rsmd = rs.getMetaData();
             if(!rs.next()) {
                 rs.close();
@@ -86,23 +86,27 @@ public class mysqlConnect {
         sql = sql.substring(0,sql.length() - 1);
         sql = sql + "WHERE `no` = "+no;
 
-        try {
+        return !new PoolSubmit(sql).execute();
+
+        /*try {
             Statement statement = con.createStatement();
             return !statement.execute(sql);
         }catch(SQLException e)
         {
             return false;
-        }
+        }*/
     }
 
     public static boolean delete(String table,int no){
         String sql = "DELETE FROM `ima_management`.`" + table + "` WHERE `no` = "+no;
-        try {
-            Statement statement = con.createStatement();
+        return !new PoolSubmit(sql).execute();
+
+        /*try {
+            //Statement statement = con.createStatement();
             return !statement.execute(sql);
         }catch(SQLException e) {
             return false;
-        }
+        }*/
     }
 
     public static boolean insert(String table,Map<String,String> data){
@@ -116,11 +120,13 @@ public class mysqlConnect {
         value = value.substring(0,value.length() - 1);
         sql = sql +value + ")";
 
-        try {
+        return !new PoolSubmit(sql).execute();
+
+        /*try {
             Statement statement = con.createStatement();
             return !statement.execute(sql);
         }catch(SQLException e) {
             return false;
-        }
+        }*/
     }
 }

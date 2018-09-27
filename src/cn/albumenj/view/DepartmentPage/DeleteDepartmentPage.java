@@ -2,11 +2,10 @@ package cn.albumenj.view.DepartmentPage;
 
 import cn.albumenj.Application;
 import cn.albumenj.model.department;
-import cn.albumenj.model.user;
 import cn.albumenj.service.DepartmentService;
-import cn.albumenj.util.flushPage;
-import cn.albumenj.util.printLine;
-import cn.albumenj.util.requestEnter;
+import cn.albumenj.util.FlushPage;
+import cn.albumenj.util.PrintLine;
+import cn.albumenj.util.RequestEnter;
 
 public class DeleteDepartmentPage {
     private Application application;
@@ -21,18 +20,18 @@ public class DeleteDepartmentPage {
     }
 
     public void show(){
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
 
         System.out.print("请输入要删除部门编号：");
-        department department = departmentService.fetchDepartmentByID(requestEnter.requestInt());
+        department department = departmentService.fetchDepartmentByID(RequestEnter.requestInt());
 
         System.out.println("   编号     名字 ");
         System.out.println(department.getID() + " " + department.getName());
         System.out.println();
 
         System.out.print("是否删除（是 1 /否 2）：");
-        switch (requestEnter.requestInt()){
+        switch (RequestEnter.requestInt()){
             case 1:
                 boolean ret = departmentService.delete(department);
                 if(ret)
@@ -45,6 +44,6 @@ public class DeleteDepartmentPage {
             default:
                 break;
         }
-        printLine.print();
+        PrintLine.print();
     }
 }

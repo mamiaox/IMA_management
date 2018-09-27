@@ -17,29 +17,29 @@ public class LoginPage {
     }
 
     public boolean show(){
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
 
         user loginUser = new user();
 
         System.out.print("请输入学号：");
-        loginUser.setID(requestEnter.requestInt());
+        loginUser.setID(RequestEnter.requestInt());
 
         System.out.print("请输入密码：");
-        loginUser.setPassword(passwordDecode.EncoderByMd5(requestEnter.requestString()));
+        loginUser.setPassword(PasswordDecode.EncoderByMd5(RequestEnter.requestString()));
 
         System.out.println();
         System.out.println("正在尝试登陆，请稍等！");
 
         if((loginUser = userService.check(loginUser)) != null){
             System.out.println("登陆成功！");
-            printLine.print();
+            PrintLine.print();
             application.loginedUser = loginUser;
             return true;
         }
         else{
             System.out.println("登陆失败！");
-            printLine.print();
+            PrintLine.print();
             return false;
         }
     }

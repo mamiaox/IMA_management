@@ -3,9 +3,9 @@ package cn.albumenj.view.StaffPage;
 import cn.albumenj.Application;
 import cn.albumenj.model.user;
 import cn.albumenj.service.UserService;
-import cn.albumenj.util.flushPage;
-import cn.albumenj.util.printLine;
-import cn.albumenj.util.requestEnter;
+import cn.albumenj.util.FlushPage;
+import cn.albumenj.util.PrintLine;
+import cn.albumenj.util.RequestEnter;
 
 public class DeleteStaffPage {
     private Application application;
@@ -20,11 +20,11 @@ public class DeleteStaffPage {
     }
 
     public void show(){
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
 
         System.out.print("请输入要删除人员学号：");
-        user user = userService.fetchUserByID(requestEnter.requestInt());
+        user user = userService.fetchUserByID(RequestEnter.requestInt());
 
         System.out.println("   学号     姓名     电话     QQ    权限");
         System.out.println(user.getID() + " " +
@@ -32,7 +32,7 @@ public class DeleteStaffPage {
         System.out.println();
 
         System.out.print("是否删除（是 1 /否 2）：");
-        switch (requestEnter.requestInt()){
+        switch (RequestEnter.requestInt()){
             case 1:
                 boolean ret = userService.delete(user);
                 if(ret)
@@ -45,6 +45,6 @@ public class DeleteStaffPage {
             default:
                 break;
         }
-        printLine.print();
+        PrintLine.print();
     }
 }

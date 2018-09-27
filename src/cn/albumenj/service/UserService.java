@@ -1,6 +1,6 @@
 package cn.albumenj.service;
 
-import cn.albumenj.dao.mysqlConnect;
+import cn.albumenj.dao.SqlCommit;
 import cn.albumenj.model.user;
 
 import java.util.LinkedHashMap;
@@ -12,7 +12,7 @@ public class UserService {
     private static List<user> userData;
 
     public boolean add(user addUser){
-        return mysqlConnect.insert("users",userToData(addUser));
+        return SqlCommit.insert("users",userToData(addUser));
     }
 
     public user check(user loginUser){
@@ -25,7 +25,7 @@ public class UserService {
     }
 
     public boolean delete(user deleteUser){
-        return mysqlConnect.delete("users",deleteUser.getNo());
+        return SqlCommit.delete("users",deleteUser.getNo());
     }
 
     public List<user> fetchAllUser(){
@@ -42,7 +42,7 @@ public class UserService {
         return new user();
     }
     public boolean modify(user modifyUser){
-        return mysqlConnect.update("users",modifyUser.getNo(),userToData(modifyUser));
+        return SqlCommit.update("users",modifyUser.getNo(),userToData(modifyUser));
     }
 
     private user dataTOUser(Map<String,String> data){
@@ -66,7 +66,7 @@ public class UserService {
     }
 
     private void flashUserData(){
-        userData = dataListToUser(mysqlConnect.select("users"));
+        userData = dataListToUser(SqlCommit.select("users"));
     }
 
     private Map<String,String> userToData(user user){

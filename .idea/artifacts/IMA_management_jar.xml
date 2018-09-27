@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="IMA management:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/IMA_management_jar</output-path>
+    <root id="archive" name="IMA management.jar">
+      <element id="module-output" name="IMA management" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.11.jar" path-in-jar="/" />
+      <element id="file-copy" path="C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.11.jar" />
+    </root>
+  </artifact>
+</component>

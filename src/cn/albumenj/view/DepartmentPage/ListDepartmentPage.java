@@ -1,11 +1,10 @@
 package cn.albumenj.view.DepartmentPage;
 
 import cn.albumenj.model.department;
-import cn.albumenj.model.user;
 import cn.albumenj.service.DepartmentService;
-import cn.albumenj.util.flushPage;
-import cn.albumenj.util.printLine;
-import cn.albumenj.util.requestEnter;
+import cn.albumenj.util.FlushPage;
+import cn.albumenj.util.PrintLine;
+import cn.albumenj.util.RequestEnter;
 
 import java.util.List;
 
@@ -18,8 +17,8 @@ public class ListDepartmentPage {
     }
 
     public void showALL() {
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
 
         List<department> departments = departmentService.fetchAllDepartment();
 
@@ -31,16 +30,16 @@ public class ListDepartmentPage {
 
         System.out.println();
         System.out.println("请输入任意内容以返回。");
-        requestEnter.requestString();
-        printLine.print();
+        RequestEnter.requestString();
+        PrintLine.print();
     }
 
     public void show(){
-        flushPage.flush();
-        printLine.print();
+        FlushPage.flush();
+        PrintLine.print();
 
         System.out.print("请输入要查询部门编号：");
-        department department = departmentService.fetchDepartmentByID(requestEnter.requestInt());
+        department department = departmentService.fetchDepartmentByID(RequestEnter.requestInt());
 
         System.out.println("   编号     名字 ");
         System.out.println(department.getID() + " " + department.getName());
@@ -48,7 +47,7 @@ public class ListDepartmentPage {
 
         System.out.println();
         System.out.println("请输入任意内容以返回。");
-        requestEnter.requestString();
-        printLine.print();
+        RequestEnter.requestString();
+        PrintLine.print();
     }
 }
