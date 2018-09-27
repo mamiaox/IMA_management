@@ -69,6 +69,7 @@ public class Application {
                                     ModifyStaffPage modifyStaffPage = new ModifyStaffPage();
                                     modifyStaffPage.setApplication(app);
                                     modifyStaffPage.setUserService(userService);
+                                    modifyStaffPage.setDepartmentService(departmentService);
                                     modifyStaffPage.show();
                                     break;
                                 case 6:

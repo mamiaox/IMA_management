@@ -6,6 +6,7 @@ import cn.albumenj.model.user;
 import cn.albumenj.service.DepartmentService;
 import cn.albumenj.service.UserService;
 import cn.albumenj.util.flushPage;
+import cn.albumenj.util.passwordDecode;
 import cn.albumenj.util.printLine;
 import cn.albumenj.util.requestEnter;
 
@@ -37,7 +38,7 @@ public class AddStaffPage {
         addUser.setID(requestEnter.requestInt());
 
         System.out.print("请输入增加人员的密码：");
-        addUser.setPassword(requestEnter.requestString());
+        addUser.setPassword(passwordDecode.EncoderByMd5(requestEnter.requestString()));
 
         System.out.print("请输入增加人员的姓名：");
         addUser.setName(requestEnter.requestString());
@@ -58,7 +59,7 @@ public class AddStaffPage {
         }
 
         System.out.print("请输入增加人员的部门：");
-        addUser.setQq(requestEnter.requestString());
+        addUser.setDepartment(requestEnter.requestInt());
 
         System.out.println("权限编号如下如下");
         System.out.println("1   会长");

@@ -82,7 +82,7 @@ public class mysqlConnect {
     public static boolean update(String table,int no,Map<String,String> data){
         String sql = "UPDATE `ima_management`.`" + table + "` SET ";
         for(String key:data.keySet())
-            sql = sql + "`" + key + "` = `" + data.get(key) + "`,";
+            sql = sql + "`" + key + "` = '" + data.get(key) + "',";
         sql = sql.substring(0,sql.length() - 1);
         sql = sql + "WHERE `no` = "+no;
 

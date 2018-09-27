@@ -26,7 +26,7 @@ public class LoginPage {
         loginUser.setID(requestEnter.requestInt());
 
         System.out.print("请输入密码：");
-        loginUser.setPassword(requestEnter.requestString());
+        loginUser.setPassword(passwordDecode.EncoderByMd5(requestEnter.requestString()));
 
         System.out.println();
         System.out.println("正在尝试登陆，请稍等！");
