@@ -1,7 +1,7 @@
 package cn.albumenj.view.StaffPage;
 
 import cn.albumenj.model.user;
-import cn.albumenj.service.User.fetchUser;
+import cn.albumenj.service.UserService;
 import cn.albumenj.util.flushPage;
 import cn.albumenj.util.printLine;
 import cn.albumenj.util.requestEnter;
@@ -9,12 +9,17 @@ import cn.albumenj.util.requestEnter;
 import java.util.List;
 
 public class ListStaffPage {
+    private UserService userService;
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     public void showALL(){
         flushPage.flush();
         printLine.print();
 
-        List<user> users = new fetchUser().fetchAllUser();
+        List<user> users = userService.fetchAllUser();
 
         System.out.println("   学号     姓名     电话     QQ    权限");
         for (user user:users) {
@@ -33,7 +38,7 @@ public class ListStaffPage {
         printLine.print();
 
         System.out.print("请输入要查询人员学号：");
-        user user = new fetchUser().fetchUserByID(requestEnter.requestInt());
+        user user = userService.fetchUserByID(requestEnter.requestInt());
 
         System.out.println("   学号     姓名     电话     QQ    权限");
         System.out.println(user.getID() + " " +

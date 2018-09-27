@@ -3,17 +3,21 @@ package cn.albumenj.view.DepartmentPage;
 import cn.albumenj.Application;
 import cn.albumenj.model.department;
 import cn.albumenj.model.user;
-import cn.albumenj.service.Department.deleteDepartment;
-import cn.albumenj.service.Department.fetchDepartment;
+import cn.albumenj.service.DepartmentService;
 import cn.albumenj.util.flushPage;
 import cn.albumenj.util.printLine;
 import cn.albumenj.util.requestEnter;
 
 public class DeleteDepartmentPage {
     private Application application;
+    private DepartmentService departmentService;
 
     public void setApplication(Application application) {
         this.application = application;
+    }
+
+    public void setDepartmentService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
     }
 
     public void show(){
@@ -21,7 +25,7 @@ public class DeleteDepartmentPage {
         printLine.print();
 
         System.out.print("请输入要删除部门编号：");
-        department department = new fetchDepartment().fetchDepartmentByID(requestEnter.requestInt());
+        department department = departmentService.fetchDepartmentByID(requestEnter.requestInt());
 
         System.out.println("   编号     名字 ");
         System.out.println(department.getID() + " " + department.getName());
@@ -30,7 +34,7 @@ public class DeleteDepartmentPage {
         System.out.print("是否删除（是 1 /否 2）：");
         switch (requestEnter.requestInt()){
             case 1:
-                boolean ret = new deleteDepartment().delete(department);
+                boolean ret = departmentService.delete(department);
                 if(ret)
                     System.out.println("删除成功！");
                 else

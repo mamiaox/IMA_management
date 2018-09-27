@@ -1,14 +1,19 @@
 package cn.albumenj.view.MenuPage;
 import cn.albumenj.model.user;
-import cn.albumenj.service.User.checkUser;
+import cn.albumenj.service.UserService;
 import cn.albumenj.util.*;
 import cn.albumenj.*;
 
 public class LoginPage {
     private Application application;
+    private UserService userService;
 
     public void setApplication(Application application){
         this.application = application;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     public boolean show(){
@@ -26,7 +31,7 @@ public class LoginPage {
         System.out.println();
         System.out.println("正在尝试登陆，请稍等！");
 
-        if(new checkUser().check(loginUser)==true){
+        if((loginUser = userService.check(loginUser)) != null){
             System.out.println("登陆成功！");
             printLine.print();
             application.loginedUser = loginUser;
@@ -37,6 +42,5 @@ public class LoginPage {
             printLine.print();
             return false;
         }
-
     }
 }

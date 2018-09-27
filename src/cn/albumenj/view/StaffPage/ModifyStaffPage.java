@@ -2,17 +2,21 @@ package cn.albumenj.view.StaffPage;
 
 import cn.albumenj.Application;
 import cn.albumenj.model.user;
-import cn.albumenj.service.User.fetchUser;
-import cn.albumenj.service.User.modifyUser;
+import cn.albumenj.service.UserService;
 import cn.albumenj.util.flushPage;
 import cn.albumenj.util.printLine;
 import cn.albumenj.util.requestEnter;
 
 public class ModifyStaffPage {
     private Application application;
+    private UserService userService;
 
     public void setApplication(Application application) {
         this.application = application;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     public void show(){
@@ -20,7 +24,7 @@ public class ModifyStaffPage {
         printLine.print();
 
         System.out.print("请输入要查询人员学号：");
-        user user = new fetchUser().fetchUserByID(requestEnter.requestInt());
+        user user = userService.fetchUserByID(requestEnter.requestInt());
 
         System.out.println("   学号     姓名     电话     QQ    权限");
         System.out.println(user.getID() + " " +
@@ -48,7 +52,7 @@ public class ModifyStaffPage {
                 System.out.print("请输入修改后人员的权限：");
                 user.setPermission(requestEnter.requestInt());
 
-                boolean ret = new modifyUser().modify(user);
+                boolean ret = userService.modify(user);
                 if(ret)
                     System.out.println("修改成功！");
                 else

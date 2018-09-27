@@ -23,9 +23,7 @@ public class user {
     }
 
     public int getPermission() {
-        //TODO:权限修改
-        //return permission;
-        return 1;
+        return permission;
     }
 
     public String getName() {

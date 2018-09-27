@@ -2,7 +2,7 @@ package cn.albumenj.view.DepartmentPage;
 
 import cn.albumenj.Application;
 import cn.albumenj.model.department;
-import cn.albumenj.service.Department.addDepartment;
+import cn.albumenj.service.DepartmentService;
 import cn.albumenj.util.flushPage;
 import cn.albumenj.util.printLine;
 import cn.albumenj.util.requestEnter;
@@ -10,9 +10,14 @@ import cn.albumenj.util.requestEnter;
 public class AddDepartmentPage {
 
     private Application application;
+    private DepartmentService departmentService;
 
     public void setApplication(Application application) {
         this.application = application;
+    }
+
+    public void setDepartmentService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
     }
 
     public void show(){
@@ -27,7 +32,7 @@ public class AddDepartmentPage {
         addDepartment.setName(requestEnter.requestString());
 
         System.out.println("正在添加请等待！");
-        boolean ret = new addDepartment().add(addDepartment);
+        boolean ret = departmentService.add(addDepartment);
 
         if(ret)
             System.out.println("添加成功！");
@@ -35,6 +40,5 @@ public class AddDepartmentPage {
             System.out.println("添加失败！");
 
         printLine.print();
-        return;
     }
 }
