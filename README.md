@@ -25,7 +25,7 @@ IMA人员管理
     │   │   └── MANIFEST.MF                                    //信息包  
     │   └── cn                                                 
     │       └── albumenj                                       
-    │           ├── dao                                        //数据访问对象  
+    │           ├── dao                                          
     │           │   ├── ConnectionPool                         //连接池  
     │           │   │   ├── ConcurrencySubmit.java             //多线程提交请求  
     │           │   │   ├── ConnectionConfig.java              //数据库连接配置文件  
@@ -36,36 +36,36 @@ IMA人员管理
     │           │   │   └── PooledConnection.java              //数据库具体访问  
     │           │   ├── LogCommit.java                         //日志提交  
     │           │   └── SqlCommit.java                         //数据增删查改提交  
-    │           ├── model                                      //模型  
+    │           ├── model                                        
     │           │   ├── LogModel.java                          //日志模型  
     │           │   ├── ResultModel.java                       //数据结果模型  
     │           │   ├── department.java                        //部门模型  
     │           │   └── user.java                              //用户模型  
-    │           ├── service                                    //服务  
+    │           ├── service                                      
     │           │   ├── DepartmentService.java                 //部门数据服务  
     │           │   └── UserService.java                       //人员数据服务  
-    │           ├── util                                       //工具  
+    │           ├── util                                         
     │           │   ├── FlushPage.java                         //清屏  
     │           │   ├── PasswordDecode.java                    //密码加密  
     │           │   ├── PrintLine.java                         //分割线打印  
     │           │   ├── Regex.java                             //正则表达式检测  
     │           │   └── RequestEnter.java                      //获取输入  
-    │           ├── view                                       //页面  
+    │           ├── view                                         
     │           │   ├── DepertmentPage                         //部门页面  
-    │           │   │   ├── AddDepartmentPage.java             //增加部门页面  
-    │           │   │   ├── DeleteDepartmentPage.java          //删除部门页面  
-    │           │   │   ├── ListDepartmentPage.java            //列举部门页面  
-    │           │   │   └── ModifyDepartmentPage.java          //修改部门页面  
+    │           │   │   ├── AddDepartmentPage.java              
+    │           │   │   ├── DeleteDepartmentPage.java            
+    │           │   │   ├── ListDepartmentPage.java            
+    │           │   │   └── ModifyDepartmentPage.java            
     │           │   ├── MenuPage                               //菜单页面  
-    │           │   │   ├── DepartmentManageMenu.java          //部门管理页面  
-    │           │   │   ├── LoginPage.java                     //登录页面  
-    │           │   │   ├── MenuPage.java                      //主菜单页面  
-    │           │   │   └── StaffManagePage.java               //人员管理页面  
+    │           │   │   ├── DepartmentManageMenu.java            
+    │           │   │   ├── LoginPage.java                       
+    │           │   │   ├── MenuPage.java                        
+    │           │   │   └── StaffManagePage.java                 
     │           │   └── StaffPage                              //人员页面  
-    │           │   │   ├── AddStaffPage.java                  //增加人员页面  
-    │           │   │   ├── DeleteStaffPage.java               //删除人员页面  
-    │           │   │   ├── ListStaffPage.java                 //列举人员页面  
-    │           │   │   └── ModifyStaffPage.java               //修改人员页面  
+    │           │   │   ├── AddStaffPage.java                    
+    │           │   │   ├── DeleteStaffPage.java                 
+    │           │   │   ├── ListStaffPage.java                   
+    │           │   │   └── ModifyStaffPage.java                 
     │           └── Application.java                           //主程序逻辑实现  
     ├── README.md                                              //项目说明文件  
     └── IMA management.iml                                     //IDEA项目文件  
