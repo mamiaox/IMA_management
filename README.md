@@ -12,8 +12,8 @@ Java SE ------jdk8
 MySQL   ------mysql8  
 IDE     ------IntelliJ IDEA 2018.2.3 (Ultimate Edition)  
 
-项目结构：
-.
+项目结构：  
+.  
 ├── .idea                                                  //IDEA默认配置文件夹  
 ├── resources                                              //资源目录  
 │   └── execute.sql                                        //初始化SQL  
