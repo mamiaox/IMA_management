@@ -1,4 +1,4 @@
-package cn.albumenj.dao;
+package cn.albumenj.dao.ConnectionPool;
 
 public interface IMyPool {
     public PooledConnection getPooledConnection();

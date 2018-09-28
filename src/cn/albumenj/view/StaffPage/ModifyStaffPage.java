@@ -5,10 +5,7 @@ import cn.albumenj.model.department;
 import cn.albumenj.model.user;
 import cn.albumenj.service.DepartmentService;
 import cn.albumenj.service.UserService;
-import cn.albumenj.util.FlushPage;
-import cn.albumenj.util.PasswordDecode;
-import cn.albumenj.util.PrintLine;
-import cn.albumenj.util.RequestEnter;
+import cn.albumenj.util.*;
 
 import java.util.List;
 
@@ -56,9 +53,11 @@ public class ModifyStaffPage {
                 System.out.print("请输入修改后人员的电话号码：");
                 user.setPhone(RequestEnter.requestString());
 
-                System.out.print("请输入修改后人员的QQ：");
+                do {
+                    System.out.print("请输入修改后人员的QQ：");
+                    user.setQq(RequestEnter.requestString());
+                }while (Regex.number(user.getQq())==false);
 
-                user.setQq(RequestEnter.requestString());
                 List<department> departments = departmentService.fetchAllDepartment();
                 System.out.println("部门编号如下");
                 System.out.println("   编号     名字 ");

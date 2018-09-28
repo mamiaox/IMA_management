@@ -14,7 +14,7 @@ import cn.albumenj.view.MenuPage.StaffManagePage;
 import cn.albumenj.view.StaffPage.*;
 
 public class Application {
-    public user loginedUser;
+    public static user loginedUser = new user();
 
     public static void main(String[] args) {
 

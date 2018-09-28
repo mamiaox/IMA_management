@@ -10,6 +10,17 @@ public class user {
     private int department;
     private int permission;
 
+    public user(){
+        No = 0;
+        ID = 0;
+        password = "";
+        name = "";
+        phone = "";
+        qq = "";
+        department = 0;
+        permission = 0;
+    }
+
     public int getDepartment() {
         return department;
     }

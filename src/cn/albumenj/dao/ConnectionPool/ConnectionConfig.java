@@ -1,4 +1,4 @@
-package cn.albumenj.dao;
+package cn.albumenj.dao.ConnectionPool;
 
 public class ConnectionConfig {
     public static final String URL = "jdbc:mysql://localhost:3306/ima_management?serverTimezone=UTC&useSSL=false";

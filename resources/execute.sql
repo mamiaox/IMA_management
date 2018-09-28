@@ -18,8 +18,8 @@ CREATE TABLE `department`  (
 -- ----------------------------
 -- Records of department
 -- ----------------------------
-INSERT INTO `department` VALUES (1, 1, '1');
-INSERT INTO `department` VALUES (2, 2, '2');
+INSERT INTO `department` VALUES (1, 1, '部门1');
+INSERT INTO `department` VALUES (2, 2, '部门2');
 
 -- ----------------------------
 -- Table structure for log
@@ -52,6 +52,6 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (2, '1', 'aaa', 'xMpCOKC5I4INzFCab3WEmw==', '1', '1', '1', '1');
+INSERT INTO `users` VALUES (2, '1', '测试', 'xMpCOKC5I4INzFCab3WEmw==', '1', '1', '1', '1');
 
 SET FOREIGN_KEY_CHECKS = 1;

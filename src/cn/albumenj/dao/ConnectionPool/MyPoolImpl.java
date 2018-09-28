@@ -1,4 +1,4 @@
-package cn.albumenj.dao;
+package cn.albumenj.dao.ConnectionPool;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

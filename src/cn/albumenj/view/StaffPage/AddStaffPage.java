@@ -5,10 +5,7 @@ import cn.albumenj.model.department;
 import cn.albumenj.model.user;
 import cn.albumenj.service.DepartmentService;
 import cn.albumenj.service.UserService;
-import cn.albumenj.util.FlushPage;
-import cn.albumenj.util.PasswordDecode;
-import cn.albumenj.util.PrintLine;
-import cn.albumenj.util.RequestEnter;
+import cn.albumenj.util.*;
 
 import java.util.List;
 
@@ -46,9 +43,10 @@ public class AddStaffPage {
         System.out.print("请输入增加人员的电话号码：");
         addUser.setPhone(RequestEnter.requestString());
 
-        System.out.print("请输入增加人员的QQ：");
-        addUser.setQq(RequestEnter.requestString());
-
+        do {
+            System.out.print("请输入增加人员的QQ：");
+            addUser.setQq(RequestEnter.requestString());
+        }while (Regex.number(addUser.getQq())==false);
 
         List<department> departments = departmentService.fetchAllDepartment();
         System.out.println("部门编号如下");
