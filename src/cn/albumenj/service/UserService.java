@@ -1,7 +1,7 @@
 package cn.albumenj.service;
 
 import cn.albumenj.dao.SqlCommit;
-import cn.albumenj.model.user;
+import cn.albumenj.model.UserModel;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -9,75 +9,75 @@ import java.util.List;
 import java.util.Map;
 
 public class UserService {
-    private static List<user> userData;
+    private static List<UserModel> userModelData;
 
-    public boolean add(user addUser){
-        return SqlCommit.insert("users",userToData(addUser));
+    public boolean add(UserModel addUserModel){
+        return SqlCommit.insert("users",userToData(addUserModel));
     }
 
-    public user check(user loginUser){
+    public UserModel check(UserModel loginUserModel){
         flashUserData();
-        for(user user:userData)
-            if(user.getID()==loginUser.getID()
-                    &&user.getPassword().compareTo(loginUser.getPassword())==0)
-                return user;
+        for(UserModel UserModel : userModelData)
+            if(UserModel.getID()== loginUserModel.getID()
+                    && UserModel.getPassword().compareTo(loginUserModel.getPassword())==0)
+                return UserModel;
         return null;
     }
 
-    public boolean delete(user deleteUser){
-        return SqlCommit.delete("users",deleteUser.getNo());
+    public boolean delete(UserModel deleteUserModel){
+        return SqlCommit.delete("users", deleteUserModel.getNo());
     }
 
-    public List<user> fetchAllUser(){
+    public List<UserModel> fetchAllUser(){
         flashUserData();
-        return userData;
+        return userModelData;
     }
 
-    public user fetchUserByID(int ID){
+    public UserModel fetchUserByID(int ID){
         flashUserData();
-        for(user user:userData) {
-            if (user.getID() == ID)
-                return user;
+        for(UserModel UserModel : userModelData) {
+            if (UserModel.getID() == ID)
+                return UserModel;
         }
-        return new user();
+        return new UserModel();
     }
-    public boolean modify(user modifyUser){
-        return SqlCommit.update("users",modifyUser.getNo(),userToData(modifyUser));
-    }
-
-    private user dataTOUser(Map<String,String> data){
-        user user = new user();
-        user.setNo(Integer.parseInt(data.get("no")));
-        user.setID(Integer.parseInt(data.get("id")));
-        user.setPassword(data.get("password"));
-        user.setName(data.get("name"));
-        user.setPhone(data.get("phone"));
-        user.setQq(data.get("qq"));
-        user.setDepartment(Integer.parseInt(data.get("department")));
-        user.setPermission(Integer.parseInt(data.get("permission")));
-        return user;
+    public boolean modify(UserModel modifyUserModel){
+        return SqlCommit.update("users", modifyUserModel.getNo(),userToData(modifyUserModel));
     }
 
-    private List<user> dataListToUser(List<Map<String,String>> dataList){
-        List<user> userList = new LinkedList<>();
+    private UserModel dataTOUser(Map<String,String> data){
+        UserModel UserModel = new UserModel();
+        UserModel.setNo(Integer.parseInt(data.get("no")));
+        UserModel.setID(Integer.parseInt(data.get("id")));
+        UserModel.setPassword(data.get("password"));
+        UserModel.setName(data.get("name"));
+        UserModel.setPhone(data.get("phone"));
+        UserModel.setQq(data.get("qq"));
+        UserModel.setDepartment(Integer.parseInt(data.get("department")));
+        UserModel.setPermission(Integer.parseInt(data.get("permission")));
+        return UserModel;
+    }
+
+    private List<UserModel> dataListToUser(List<Map<String,String>> dataList){
+        List<UserModel> userModelList = new LinkedList<>();
         for(Map<String,String> data:dataList)
-            userList.add(dataTOUser(data));
-        return userList;
+            userModelList.add(dataTOUser(data));
+        return userModelList;
     }
 
     private void flashUserData(){
-        userData = dataListToUser(SqlCommit.select("users"));
+        userModelData = dataListToUser(SqlCommit.select("users"));
     }
 
-    private Map<String,String> userToData(user user){
+    private Map<String,String> userToData(UserModel UserModel){
         Map<String,String> data = new LinkedHashMap<>();
-        data.put("id",user.getID()+"");
-        data.put("password",user.getPassword());
-        data.put("name",user.getName());
-        data.put("phone",user.getPhone());
-        data.put("qq",user.getQq());
-        data.put("department",user.getDepartment()+"");
-        data.put("permission",user.getPermission()+"");
+        data.put("id", UserModel.getID()+"");
+        data.put("password", UserModel.getPassword());
+        data.put("name", UserModel.getName());
+        data.put("phone", UserModel.getPhone());
+        data.put("qq", UserModel.getQq());
+        data.put("DepartmentModel", UserModel.getDepartment()+"");
+        data.put("permission", UserModel.getPermission()+"");
         return data;
     }
 }

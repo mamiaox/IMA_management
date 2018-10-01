@@ -1,8 +1,11 @@
 package cn.albumenj.view.MenuPage;
-import cn.albumenj.model.user;
+import cn.albumenj.model.UserModel;
 import cn.albumenj.service.UserService;
 import cn.albumenj.util.*;
 import cn.albumenj.*;
+import cn.albumenj.util.CommandLineUtil.FlushPage;
+import cn.albumenj.util.CommandLineUtil.PrintLine;
+import cn.albumenj.util.CommandLineUtil.RequestEnter;
 
 public class LoginPage {
     private Application application;
@@ -20,21 +23,21 @@ public class LoginPage {
         FlushPage.flush();
         PrintLine.print();
 
-        user loginUser = new user();
+        UserModel loginUserModel = new UserModel();
 
         System.out.print("请输入学号：");
-        loginUser.setID(RequestEnter.requestInt());
+        loginUserModel.setID(RequestEnter.requestInt());
 
         System.out.print("请输入密码：");
-        loginUser.setPassword(PasswordDecode.EncoderByMd5(RequestEnter.requestString()));
+        loginUserModel.setPassword(PasswordDecode.EncoderByMd5(RequestEnter.requestString()));
 
         System.out.println();
         System.out.println("正在尝试登陆，请稍等！");
 
-        if((loginUser = userService.check(loginUser)) != null){
+        if((loginUserModel = userService.check(loginUserModel)) != null){
             System.out.println("登陆成功！");
             PrintLine.print();
-            application.loginedUser = loginUser;
+            application.loginedUserModel = loginUserModel;
             return true;
         }
         else{

@@ -4,10 +4,10 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for department
+-- Table structure for DepartmentModel
 -- ----------------------------
-DROP TABLE IF EXISTS `department`;
-CREATE TABLE `department`  (
+DROP TABLE IF EXISTS `DepartmentModel`;
+CREATE TABLE `DepartmentModel`  (
   `no` int(11) NOT NULL AUTO_INCREMENT,
   `id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -16,10 +16,10 @@ CREATE TABLE `department`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of department
+-- Records of DepartmentModel
 -- ----------------------------
-INSERT INTO `department` VALUES (1, 1, '部门1');
-INSERT INTO `department` VALUES (2, 2, '部门2');
+INSERT INTO `DepartmentModel` VALUES (1, 1, '部门1');
+INSERT INTO `DepartmentModel` VALUES (2, 2, '部门2');
 
 -- ----------------------------
 -- Table structure for log
@@ -27,31 +27,31 @@ INSERT INTO `department` VALUES (2, 2, '部门2');
 DROP TABLE IF EXISTS `log`;
 CREATE TABLE `log`  (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `UserModel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `action` varchar(2550) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for users
+-- Table structure for UserModels
 -- ----------------------------
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users`  (
+DROP TABLE IF EXISTS `UserModels`;
+CREATE TABLE `UserModels`  (
   `no` int(11) NOT NULL AUTO_INCREMENT,
   `id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `qq` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `department` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `DepartmentModel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `permission` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`no`, `id`) USING BTREE,
   UNIQUE INDEX `no`(`no`, `id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of users
+-- Records of UserModels
 -- ----------------------------
-INSERT INTO `users` VALUES (2, '1', '测试', 'xMpCOKC5I4INzFCab3WEmw==', '1', '1', '1', '1');
+INSERT INTO `UserModels` VALUES (2, '1', '测试', 'xMpCOKC5I4INzFCab3WEmw==', '1', '1', '1', '1');
 
 SET FOREIGN_KEY_CHECKS = 1;

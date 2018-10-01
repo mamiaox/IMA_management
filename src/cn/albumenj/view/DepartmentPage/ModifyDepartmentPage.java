@@ -1,19 +1,13 @@
 package cn.albumenj.view.DepartmentPage;
 
-import cn.albumenj.Application;
-import cn.albumenj.model.department;
+import cn.albumenj.model.DepartmentModel;
 import cn.albumenj.service.DepartmentService;
-import cn.albumenj.util.FlushPage;
-import cn.albumenj.util.PrintLine;
-import cn.albumenj.util.RequestEnter;
+import cn.albumenj.util.CommandLineUtil.FlushPage;
+import cn.albumenj.util.CommandLineUtil.PrintLine;
+import cn.albumenj.util.CommandLineUtil.RequestEnter;
 
 public class ModifyDepartmentPage {
-    private Application application;
     private DepartmentService departmentService;
-
-    public void setApplication(Application application)    {
-        this.application = application;
-    }
 
     public void setDepartmentService(DepartmentService departmentService) {
         this.departmentService = departmentService;
@@ -24,22 +18,22 @@ public class ModifyDepartmentPage {
         PrintLine.print();
 
         System.out.print("请输入要查询部门编号：");
-        department department = departmentService.fetchDepartmentByID(RequestEnter.requestInt());
+        DepartmentModel departmentModel = departmentService.fetchDepartmentByID(RequestEnter.requestInt());
 
         System.out.println("   编号     名字 ");
-        System.out.println(department.getID() + " " + department.getName());
+        System.out.println(departmentModel.getID() + " " + departmentModel.getName());
         System.out.println();
 
         System.out.print("是否修改（是 1 /否 2）：");
         switch (RequestEnter.requestInt()){
             case 1:
                 System.out.print("请输入修改后部门编号：");
-                department.setID(RequestEnter.requestInt());
+                departmentModel.setID(RequestEnter.requestInt());
 
                 System.out.print("请输入修改后部门名称：");
-                department.setName(RequestEnter.requestString());
+                departmentModel.setName(RequestEnter.requestString());
 
-                boolean ret = departmentService.modify(department);
+                boolean ret = departmentService.modify(departmentModel);
                 if(ret)
                     System.out.println("修改成功！");
                 else

@@ -1,9 +1,9 @@
 package cn.albumenj.view.MenuPage;
 
 import cn.albumenj.Application;
-import cn.albumenj.util.FlushPage;
-import cn.albumenj.util.PrintLine;
-import cn.albumenj.util.RequestEnter;
+import cn.albumenj.util.CommandLineUtil.FlushPage;
+import cn.albumenj.util.CommandLineUtil.PrintLine;
+import cn.albumenj.util.CommandLineUtil.RequestEnter;
 
 public class StaffManagePage {
     private Application application;
@@ -15,7 +15,7 @@ public class StaffManagePage {
     public int show(){
         FlushPage.flush();
         PrintLine.print();
-        System.out.println("尊敬的"+application.loginedUser.getName()+"，您好：");
+        System.out.println("尊敬的"+application.loginedUserModel.getName()+"，您好：");
 
         for (int i = 0;i<10;i++)
             System.out.print(" ");
@@ -25,8 +25,8 @@ public class StaffManagePage {
             System.out.print(" ");
         System.out.println("2、查询指定人员");
 
-        if(application.loginedUser.getPermission()==1
-                ||application.loginedUser.getPermission()==2){
+        if(application.loginedUserModel.getPermission()==1
+                ||application.loginedUserModel.getPermission()==2){
             for (int i = 0;i<10;i++)
                 System.out.print(" ");
             System.out.println("3、增加人员");

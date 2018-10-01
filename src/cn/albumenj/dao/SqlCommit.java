@@ -1,7 +1,7 @@
 package cn.albumenj.dao;
 
 import cn.albumenj.Application;
-import cn.albumenj.dao.ConnectionPool.PoolSubmit;
+import cn.albumenj.util.ConnectionPool.PoolSubmit;
 import cn.albumenj.model.LogModel;
 import cn.albumenj.model.ResultModel;
 
@@ -71,7 +71,8 @@ public class SqlCommit {
 
             ResultSet rs = resultModel.getResultSet();
 
-            LogCommit.submit(new LogModel(Application.loginedUser,sql));
+            LogModel logModel = new LogModel(sql);
+            LogCommit.submit(logModel);
 
             ResultSetMetaData rsmd = rs.getMetaData();
             if (!rs.next()) {
@@ -111,7 +112,8 @@ public class SqlCommit {
         resultModel.setSql(sql);
         resultModel = new PoolSubmit().execute(resultModel);
 
-        LogCommit.submit(new LogModel(Application.loginedUser,sql));
+        LogModel logModel = new LogModel(sql);
+        LogCommit.submit(logModel);
 
         try {
             while((resultModel = new PoolSubmit().fetch(resultModel.getSeed()))!=null)
@@ -139,7 +141,8 @@ public class SqlCommit {
         resultModel.setSql(sql);
         resultModel = new PoolSubmit().execute(resultModel);
 
-        LogCommit.submit(new LogModel(Application.loginedUser,sql));
+        LogModel logModel = new LogModel(sql);
+        LogCommit.submit(logModel);
 
         try {
             while((resultModel = new PoolSubmit().fetch(resultModel.getSeed()))!=null)
@@ -174,7 +177,8 @@ public class SqlCommit {
         resultModel.setSql(sql);
         resultModel = new PoolSubmit().execute(resultModel);
 
-        LogCommit.submit(new LogModel(Application.loginedUser,sql));
+        LogModel logModel = new LogModel(sql);
+        LogCommit.submit(logModel);
 
         try {
             while((resultModel = new PoolSubmit().fetch(resultModel.getSeed()))!=null)

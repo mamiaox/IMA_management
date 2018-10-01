@@ -1,15 +1,17 @@
 package cn.albumenj.model;
 
+import cn.albumenj.Application;
+
 import java.util.Date;
 
 public class LogModel {
-    private user user;
+    private UserModel userModel;
     private String action;
     private String time;
 
-    public LogModel(user user,String action){
+    public LogModel(String action) {
         setAction(action);
-        setUser(user);
+        setUserModel(Application.loginedUserModel);
         setTime();
     }
 
@@ -26,15 +28,15 @@ public class LogModel {
         return action;
     }
 
-    public cn.albumenj.model.user getUser() {
-        return user;
+    public UserModel getUserModel() {
+        return userModel;
     }
 
     public void setAction(String action) {
         this.action = action;
     }
 
-    public void setUser(cn.albumenj.model.user user) {
-        this.user = user;
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
     }
 }

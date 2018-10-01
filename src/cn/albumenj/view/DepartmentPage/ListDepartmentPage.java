@@ -1,10 +1,10 @@
 package cn.albumenj.view.DepartmentPage;
 
-import cn.albumenj.model.department;
+import cn.albumenj.model.DepartmentModel;
 import cn.albumenj.service.DepartmentService;
-import cn.albumenj.util.FlushPage;
-import cn.albumenj.util.PrintLine;
-import cn.albumenj.util.RequestEnter;
+import cn.albumenj.util.CommandLineUtil.FlushPage;
+import cn.albumenj.util.CommandLineUtil.PrintLine;
+import cn.albumenj.util.CommandLineUtil.RequestEnter;
 
 import java.util.List;
 
@@ -20,12 +20,12 @@ public class ListDepartmentPage {
         FlushPage.flush();
         PrintLine.print();
 
-        List<department> departments = departmentService.fetchAllDepartment();
+        List<DepartmentModel> departmentModels = departmentService.fetchAllDepartment();
 
         System.out.println("   编号     名字 ");
 
-        for (department department : departments) {
-            System.out.println(department.getID() + " " + department.getName());
+        for (DepartmentModel departmentModel : departmentModels) {
+            System.out.println(departmentModel.getID() + " " + departmentModel.getName());
         }
 
         System.out.println();
@@ -39,10 +39,10 @@ public class ListDepartmentPage {
         PrintLine.print();
 
         System.out.print("请输入要查询部门编号：");
-        department department = departmentService.fetchDepartmentByID(RequestEnter.requestInt());
+        DepartmentModel departmentModel = departmentService.fetchDepartmentByID(RequestEnter.requestInt());
 
         System.out.println("   编号     名字 ");
-        System.out.println(department.getID() + " " + department.getName());
+        System.out.println(departmentModel.getID() + " " + departmentModel.getName());
         System.out.println();
 
         System.out.println();

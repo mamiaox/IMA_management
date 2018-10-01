@@ -1,9 +1,9 @@
 package cn.albumenj.view.MenuPage;
 
 import cn.albumenj.Application;
-import cn.albumenj.util.FlushPage;
-import cn.albumenj.util.PrintLine;
-import cn.albumenj.util.*;
+import cn.albumenj.util.CommandLineUtil.FlushPage;
+import cn.albumenj.util.CommandLineUtil.PrintLine;
+import cn.albumenj.util.CommandLineUtil.RequestEnter;
 
 public class MenuPage {
     private Application application;
@@ -15,7 +15,7 @@ public class MenuPage {
     public int show(){
         FlushPage.flush();
         PrintLine.print();
-        System.out.println("尊敬的"+application.loginedUser.getName()+"，您好：");
+        System.out.println("尊敬的"+application.loginedUserModel.getName()+"，您好：");
 
         for (int i = 0;i<10;i++)
             System.out.print(" ");

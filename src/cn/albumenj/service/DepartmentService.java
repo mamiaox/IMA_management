@@ -1,7 +1,7 @@
 package cn.albumenj.service;
 
 import cn.albumenj.dao.SqlCommit;
-import cn.albumenj.model.department;
+import cn.albumenj.model.DepartmentModel;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -9,57 +9,57 @@ import java.util.List;
 import java.util.Map;
 
 public class DepartmentService {
-    private static List<department> departmentData;
+    private static List<DepartmentModel> departmentModelData;
 
-    public boolean add(department addDepartment){
-        return SqlCommit.insert("department",departmentToData(addDepartment));
+    public boolean add(DepartmentModel addDepartmentModel){
+        return SqlCommit.insert("department",departmentToData(addDepartmentModel));
     }
 
-    public boolean delete(department deleteDepartment){
-        return SqlCommit.delete("department",deleteDepartment.getNo());
+    public boolean delete(DepartmentModel deleteDepartmentModel){
+        return SqlCommit.delete("department", deleteDepartmentModel.getNo());
     }
 
-    public List<department> fetchAllDepartment(){
+    public List<DepartmentModel> fetchAllDepartment(){
         flashDepartmentData();
-        return  departmentData;
+        return departmentModelData;
     }
 
-    public department fetchDepartmentByID(int ID){
+    public DepartmentModel fetchDepartmentByID(int ID){
         flashDepartmentData();
-        for(department department:departmentData) {
-            if (department.getID() == ID)
-                return department;
+        for(DepartmentModel DepartmentModel : departmentModelData) {
+            if (DepartmentModel.getID() == ID)
+                return DepartmentModel;
         }
-        return new department();
+        return new DepartmentModel();
     }
 
-    public boolean modify(department modifyDepartment){
-        return SqlCommit.update("department",modifyDepartment.getNo(),departmentToData(modifyDepartment));
+    public boolean modify(DepartmentModel modifyDepartmentModel){
+        return SqlCommit.update("department", modifyDepartmentModel.getNo(),departmentToData(modifyDepartmentModel));
     }
 
-    private department dataToDepartment(Map<String,String> data){
-        department department = new department();
-        department.setID(Integer.parseInt(data.get("id")));
-        department.setName(data.get("name"));
-        department.setNo(Integer.parseInt(data.get("no")));
-        return department;
+    private DepartmentModel dataToDepartment(Map<String,String> data){
+        DepartmentModel DepartmentModel = new DepartmentModel();
+        DepartmentModel.setID(Integer.parseInt(data.get("id")));
+        DepartmentModel.setName(data.get("name"));
+        DepartmentModel.setNo(Integer.parseInt(data.get("no")));
+        return DepartmentModel;
     }
 
-    private List<department> dataListToDepartment(List<Map<String,String>> dataList){
-        List<department> departmentList = new LinkedList<>();
+    private List<DepartmentModel> dataListToDepartment(List<Map<String,String>> dataList){
+        List<DepartmentModel> departmentModelList = new LinkedList<>();
         for(Map<String,String> data:dataList)
-            departmentList.add(dataToDepartment(data));
-        return departmentList;
+            departmentModelList.add(dataToDepartment(data));
+        return departmentModelList;
     }
 
     private void flashDepartmentData(){
-        departmentData = dataListToDepartment(SqlCommit.select("department"));
+        departmentModelData = dataListToDepartment(SqlCommit.select("department"));
     }
 
-    private Map<String,String> departmentToData(department department){
+    private Map<String,String> departmentToData(DepartmentModel DepartmentModel){
         Map<String,String> data = new LinkedHashMap<>();
-        data.put("id",department.getID()+"");
-        data.put("name",department.getName());
+        data.put("id", DepartmentModel.getID()+"");
+        data.put("name", DepartmentModel.getName());
         return data;
     }
 }

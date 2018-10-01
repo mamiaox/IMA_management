@@ -1,10 +1,10 @@
 package cn.albumenj.view.StaffPage;
 
-import cn.albumenj.model.user;
+import cn.albumenj.model.UserModel;
 import cn.albumenj.service.UserService;
-import cn.albumenj.util.FlushPage;
-import cn.albumenj.util.PrintLine;
-import cn.albumenj.util.RequestEnter;
+import cn.albumenj.util.CommandLineUtil.FlushPage;
+import cn.albumenj.util.CommandLineUtil.PrintLine;
+import cn.albumenj.util.CommandLineUtil.RequestEnter;
 
 import java.util.List;
 
@@ -19,12 +19,13 @@ public class ListStaffPage {
         FlushPage.flush();
         PrintLine.print();
 
-        List<user> users = userService.fetchAllUser();
+        List<UserModel> userModels = userService.fetchAllUser();
 
         System.out.println("   学号     姓名     电话     QQ    权限");
-        for (user user:users) {
-            System.out.println(user.getID() + " " +
-                    user.getName() + " " + user.getPhone() + " " +user.getQq()+ " " +user.getPermission());
+        for (UserModel userModel : userModels) {
+            System.out.println(userModel.getID() + " " +
+                    userModel.getName() + " " + userModel.getPhone() + " " +
+                    userModel.getQq()+ " " + userModel.getPermission());
         }
 
         System.out.println();
@@ -38,11 +39,12 @@ public class ListStaffPage {
         PrintLine.print();
 
         System.out.print("请输入要查询人员学号：");
-        user user = userService.fetchUserByID(RequestEnter.requestInt());
+        UserModel userModel = userService.fetchUserByID(RequestEnter.requestInt());
 
         System.out.println("   学号     姓名     电话     QQ    权限");
-        System.out.println(user.getID() + " " +
-                    user.getName() + " " + user.getPhone() + " " +user.getQq()+ " " +user.getPermission());
+        System.out.println(userModel.getID() + " " +
+                userModel.getName() + " " + userModel.getPhone() + " " +
+                userModel.getQq()+ " " + userModel.getPermission());
 
         System.out.println();
         System.out.println("请输入任意内容以返回。");
