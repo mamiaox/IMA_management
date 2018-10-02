@@ -7,35 +7,17 @@ import java.util.Vector;
 
 public class MyPoolImpl implements IMyPool {
     private Vector<PooledConnection> pooledConnections = new Vector<>();
-    private static String URL;
-    private static String USER;
-    private static String PASSWORD;
-    private static String DRIVER;
-    private static int initCount;
-    private static int step;
-    private static int maxThread;
 
-    public MyPoolImpl(){
-                createPooledConnection(initCount);
-            }
-
-            static {
-                init();
-                try {
-                    Class.forName(DRIVER);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public MyPoolImpl() {
+        createPooledConnection(ConnectionConfig.initCount);
     }
 
-    private static void init(){
-        URL = ConnectionConfig.URL;
-        USER = ConnectionConfig.USER;
-        PASSWORD = ConnectionConfig.PASSWORD;
-        DRIVER = ConnectionConfig.DRIVER;
-        initCount = ConnectionConfig.initCount;
-        step = ConnectionConfig.step;
-        maxThread = ConnectionConfig.maxThread;
+    static {
+        try {
+            Class.forName(ConnectionConfig.DRIVER);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -49,7 +31,7 @@ public class MyPoolImpl implements IMyPool {
             pooledConnection = getRealConnectionFromPool();
 
             while(pooledConnection == null){
-                createPooledConnection(step);
+                createPooledConnection(ConnectionConfig.step);
                 pooledConnection = getRealConnectionFromPool();
                 return pooledConnection;
             }
@@ -61,12 +43,13 @@ public class MyPoolImpl implements IMyPool {
 
     @Override
     public void createPooledConnection(int count) {
-        if(pooledConnections.size()+count>maxThread){
+        if(pooledConnections.size()+count>ConnectionConfig.maxThread){
             throw new RuntimeException("连接池已满！");
         }
         for(int i = 0;i<count;i++){
             try{
-                Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+                Connection connection = DriverManager.getConnection(ConnectionConfig.URL,
+                        ConnectionConfig.USER,ConnectionConfig.PASSWORD);
                 PooledConnection pooledConnection = new PooledConnection(connection,false);
                 pooledConnections.add(pooledConnection);
             }catch (Exception e){
@@ -82,7 +65,8 @@ public class MyPoolImpl implements IMyPool {
                     pooledConnection.setBusy(true);
                     return pooledConnection;
                 }else{
-                    Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+                    Connection connection = DriverManager.getConnection(ConnectionConfig.URL,
+                            ConnectionConfig.USER,ConnectionConfig.PASSWORD);
                     pooledConnection.setConnection(connection);
                     pooledConnection.setBusy(true);
                     return pooledConnection;
