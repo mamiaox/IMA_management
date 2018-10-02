@@ -8,12 +8,12 @@ import java.util.Vector;
 public class MyPoolImpl implements IMyPool {
     private Vector<PooledConnection> pooledConnections = new Vector<>();
     private static String URL;
-            private static String USER;
-            private static String PASSWORD;
-            private static String DRIVER;
-            private static int initCount;
-            private static int step;
-            private static int maxThread;
+    private static String USER;
+    private static String PASSWORD;
+    private static String DRIVER;
+    private static int initCount;
+    private static int step;
+    private static int maxThread;
 
     public MyPoolImpl(){
                 createPooledConnection(initCount);
