@@ -7,26 +7,28 @@ import java.util.Vector;
 
 public class MyPoolImpl implements IMyPool {
     private Vector<PooledConnection> pooledConnections = new Vector<>();
-    private String URL;
-    private String USER;
-    private String PASSWORD;
-    private String DRIVER;
-    private int initCount;
-    private int step;
-    private int maxThread;
+    private static String URL;
+            private static String USER;
+            private static String PASSWORD;
+            private static String DRIVER;
+            private static int initCount;
+            private static int step;
+            private static int maxThread;
 
     public MyPoolImpl(){
-        init();
-        try {
-            Class.forName(DRIVER);
+                createPooledConnection(initCount);
+            }
+
+            static {
+                init();
+                try {
+                    Class.forName(DRIVER);
         }catch (Exception e){
             e.printStackTrace();
         }
-
-        createPooledConnection(initCount);
     }
 
-    private void init(){
+    private static void init(){
         URL = ConnectionConfig.URL;
         USER = ConnectionConfig.USER;
         PASSWORD = ConnectionConfig.PASSWORD;
