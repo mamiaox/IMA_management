@@ -26,6 +26,21 @@ IMA人员管理
     │   └── cn                                                 
     │       └── albumenj                                       
     │           ├── dao                                          
+    │           │   ├── LogCommit.java                         //日志提交  
+    │           │   └── SqlCommit.java                         //数据增删查改提交  
+    │           ├── model                                        
+    │           │   ├── LogModel.java                          //日志模型  
+    │           │   ├── ResultModel.java                       //数据结果模型  
+    │           │   ├── DepartmentModel.java                   //部门模型  
+    │           │   └── UserModel.java                         //用户模型  
+    │           ├── service                                      
+    │           │   ├── DepartmentService.java                 //部门数据服务  
+    │           │   └── UserService.java                       //人员数据服务  
+    │           ├── util                                         
+    │           │   ├── CommandLineUtil                        //命令行模式下交互工具 
+    │           │   │   ├── FlushPage.java                     //清屏  
+    │           │   │   ├── PrintLine.java                     //分割线打印   
+    │           │   │   └── RequestEnter.java                  //获取输入  
     │           │   ├── ConnectionPool                         //连接池  
     │           │   │   ├── ConcurrencySubmit.java             //多线程提交请求  
     │           │   │   ├── ConnectionConfig.java              //数据库连接配置文件  
@@ -34,22 +49,8 @@ IMA人员管理
     │           │   │   ├── MyPollImpl.java                    //线程池具体实现  
     │           │   │   ├── PoolSubmit.java                    //数据提交到连接池队列  
     │           │   │   └── PooledConnection.java              //数据库具体访问  
-    │           │   ├── LogCommit.java                         //日志提交  
-    │           │   └── SqlCommit.java                         //数据增删查改提交  
-    │           ├── model                                        
-    │           │   ├── LogModel.java                          //日志模型  
-    │           │   ├── ResultModel.java                       //数据结果模型  
-    │           │   ├── department.java                        //部门模型  
-    │           │   └── user.java                              //用户模型  
-    │           ├── service                                      
-    │           │   ├── DepartmentService.java                 //部门数据服务  
-    │           │   └── UserService.java                       //人员数据服务  
-    │           ├── util                                         
-    │           │   ├── FlushPage.java                         //清屏  
     │           │   ├── PasswordDecode.java                    //密码加密  
-    │           │   ├── PrintLine.java                         //分割线打印  
-    │           │   ├── Regex.java                             //正则表达式检测  
-    │           │   └── RequestEnter.java                      //获取输入  
+    │           │   └── Regex.java                             //正则表达式检测  
     │           ├── view                                         
     │           │   ├── DepertmentPage                         //部门页面  
     │           │   │   ├── AddDepartmentPage.java              
