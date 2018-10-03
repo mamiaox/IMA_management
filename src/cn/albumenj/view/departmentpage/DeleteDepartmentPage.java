@@ -1,11 +1,14 @@
-package cn.albumenj.view.DepartmentPage;
+package cn.albumenj.view.departmentpage;
 
 import cn.albumenj.model.DepartmentModel;
 import cn.albumenj.service.DepartmentService;
-import cn.albumenj.util.CommandLineUtil.FlushPage;
-import cn.albumenj.util.CommandLineUtil.PrintLine;
-import cn.albumenj.util.CommandLineUtil.RequestEnter;
+import cn.albumenj.util.commandlineutil.FlushPage;
+import cn.albumenj.util.commandlineutil.PrintLine;
+import cn.albumenj.util.commandlineutil.RequestEnter;
 
+/**
+ * @author Albumen
+ */
 public class DeleteDepartmentPage {
     private DepartmentService departmentService;
 
@@ -28,10 +31,12 @@ public class DeleteDepartmentPage {
         switch (RequestEnter.requestInt()){
             case 1:
                 boolean ret = departmentService.delete(departmentModel);
-                if(ret)
+                if(ret) {
                     System.out.println("删除成功！");
-                else
+                }
+                else {
                     System.out.println("删除失败！");
+                }
                 break;
             case 2:
                 break;

@@ -3,6 +3,9 @@ package cn.albumenj.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author Albumen
+ */
 public class Regex {
     public static boolean number(String str){
 

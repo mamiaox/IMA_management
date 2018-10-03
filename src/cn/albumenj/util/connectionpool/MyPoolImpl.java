@@ -1,10 +1,13 @@
-package cn.albumenj.util.ConnectionPool;
+package cn.albumenj.util.connectionpool;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Vector;
 
+/**
+ * @author Albumen
+ */
 public class MyPoolImpl implements IMyPool {
     private Vector<PooledConnection> pooledConnections = new Vector<>();
 
@@ -33,8 +36,8 @@ public class MyPoolImpl implements IMyPool {
             while(pooledConnection == null){
                 createPooledConnection(ConnectionConfig.step);
                 pooledConnection = getRealConnectionFromPool();
-                return pooledConnection;
             }
+            return pooledConnection;
         }catch (SQLException e){
             e.printStackTrace();
         }

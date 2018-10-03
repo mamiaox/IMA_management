@@ -2,6 +2,9 @@ package cn.albumenj.model;
 
 import java.sql.ResultSet;
 
+/**
+ * @author Albumen
+ */
 public class ResultModel {
     private double seed;
     private String sql;

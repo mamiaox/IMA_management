@@ -1,16 +1,19 @@
-package cn.albumenj.view.StaffPage;
+package cn.albumenj.view.staffpage;
 
 import cn.albumenj.model.DepartmentModel;
 import cn.albumenj.model.UserModel;
 import cn.albumenj.service.DepartmentService;
 import cn.albumenj.service.UserService;
 import cn.albumenj.util.*;
-import cn.albumenj.util.CommandLineUtil.FlushPage;
-import cn.albumenj.util.CommandLineUtil.PrintLine;
-import cn.albumenj.util.CommandLineUtil.RequestEnter;
+import cn.albumenj.util.commandlineutil.FlushPage;
+import cn.albumenj.util.commandlineutil.PrintLine;
+import cn.albumenj.util.commandlineutil.RequestEnter;
 
 import java.util.List;
 
+/**
+ * @author Albumen
+ */
 public class AddStaffPage {
     private UserService userService;
     private DepartmentService departmentService;
@@ -23,7 +26,7 @@ public class AddStaffPage {
         this.departmentService = departmentService;
     }
 
-    public void show(){
+    public void show() {
         FlushPage.flush();
         PrintLine.print();
 
@@ -43,7 +46,7 @@ public class AddStaffPage {
         do {
             System.out.print("请输入增加人员的QQ：");
             addUserModel.setQq(RequestEnter.requestString());
-        }while (Regex.number(addUserModel.getQq())==false);
+        } while (!Regex.number(addUserModel.getQq()));
 
         List<DepartmentModel> departmentModels = departmentService.fetchAllDepartment();
         System.out.println("部门编号如下");
@@ -67,12 +70,13 @@ public class AddStaffPage {
         System.out.println("正在添加请等待！");
         boolean ret = userService.add(addUserModel);
 
-        if(ret)
+        if (ret) {
             System.out.println("添加成功！");
-        else
+        }
+        else {
             System.out.println("添加失败！");
+        }
 
         PrintLine.print();
     }
-
 }

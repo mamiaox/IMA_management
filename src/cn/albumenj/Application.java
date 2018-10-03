@@ -2,25 +2,31 @@ package cn.albumenj;
 import cn.albumenj.model.*;
 import cn.albumenj.service.DepartmentService;
 import cn.albumenj.service.UserService;
-import cn.albumenj.view.DepartmentPage.AddDepartmentPage;
-import cn.albumenj.view.DepartmentPage.DeleteDepartmentPage;
-import cn.albumenj.view.DepartmentPage.ListDepartmentPage;
-import cn.albumenj.view.DepartmentPage.ModifyDepartmentPage;
-import cn.albumenj.view.MenuPage.DepartmentManagePage;
-import cn.albumenj.view.MenuPage.LoginPage;
-import cn.albumenj.view.MenuPage.MenuPage;
-import cn.albumenj.view.MenuPage.StaffManagePage;
-import cn.albumenj.view.StaffPage.*;
+import cn.albumenj.view.departmentpage.AddDepartmentPage;
+import cn.albumenj.view.departmentpage.DeleteDepartmentPage;
+import cn.albumenj.view.departmentpage.ListDepartmentPage;
+import cn.albumenj.view.departmentpage.ModifyDepartmentPage;
+import cn.albumenj.view.menupage.DepartmentManagePage;
+import cn.albumenj.view.menupage.LoginPage;
+import cn.albumenj.view.menupage.MenuPage;
+import cn.albumenj.view.menupage.StaffManagePage;
+import cn.albumenj.view.staffpage.*;
 
+/**
+ * @author Albumen
+ */
 public class Application {
-    public static UserModel loginedUserModel;    //保存已登录用户
+    /**
+     * 保存已登录用户
+     */
+    public static UserModel loginedUserModel;
 
-    Application(){
-        loginedUserModel = new UserModel();     //初始化
+    private Application(){
+        //初始化
+        loginedUserModel = new UserModel();
     }
 
     public static void main(String[] args) {
-
         Application app = new Application();
         UserService userService = new UserService();
         DepartmentService departmentService = new DepartmentService();
@@ -32,7 +38,7 @@ public class Application {
         if(loginPage.show()){
             //Login Success
             while(true) {
-                //MenuPage
+                //menupage
                 MenuPage menuPage = new MenuPage();
                 menuPage.setApplication(app);
                 //获取进入选项
@@ -43,10 +49,10 @@ public class Application {
                         StaffManagePage staffManagePage = new StaffManagePage();
                         staffManagePage.setApplication(app);
                         int methodStaff = staffManagePage.show();
-                        if(app.loginedUserModel.getPermission()==1
-                            ||app.loginedUserModel.getPermission()==2)
+                        if(cn.albumenj.Application.loginedUserModel.getPermission()==1
+                            ||cn.albumenj.Application.loginedUserModel.getPermission()==2) {
                             //会长及部长权限
-                            switch (methodStaff){
+                            switch (methodStaff) {
                                 case 1:
                                     //列出所有人员
                                     ListStaffPage listStaffPage1 = new ListStaffPage();
@@ -85,6 +91,7 @@ public class Application {
                                 default:
                                     break;
                             }
+                        }
                             else{
                                 //普通成员权限
                                 switch (methodStaff){
@@ -114,9 +121,9 @@ public class Application {
                         departmentManagePage.setApplication(app);
                         int methodDepartment = departmentManagePage.show();
 
-                        if(app.loginedUserModel.getPermission()==1)
+                        if(cn.albumenj.Application.loginedUserModel.getPermission()==1) {
                             //会长权限
-                            switch (methodDepartment){
+                            switch (methodDepartment) {
                                 case 1:
                                     //列出所有部门
                                     ListDepartmentPage listDepartmentPage1 = new ListDepartmentPage();
@@ -153,6 +160,7 @@ public class Application {
                                 default:
                                     break;
                             }
+                        }
                         else {
                             //其他成员权限
                             switch (methodDepartment) {
@@ -183,7 +191,6 @@ public class Application {
                         break;
                 }
             }
-
         }
     }
 }

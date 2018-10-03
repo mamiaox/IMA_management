@@ -1,5 +1,8 @@
 package cn.albumenj.model;
 
+/**
+ * @author Albumen
+ */
 public class DepartmentModel {
     private int No;
     private int ID;

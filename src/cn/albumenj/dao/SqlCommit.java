@@ -1,7 +1,6 @@
 package cn.albumenj.dao;
 
-import cn.albumenj.Application;
-import cn.albumenj.util.ConnectionPool.PoolSubmit;
+import cn.albumenj.util.connectionpool.PoolSubmit;
 import cn.albumenj.model.LogModel;
 import cn.albumenj.model.ResultModel;
 
@@ -11,6 +10,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Albumen
+ */
 public class SqlCommit {
     private static final String URL = "jdbc:mysql://localhost:3306/ima_management?serverTimezone=UTC&useSSL=false";
     private static final String USER = "root";
@@ -60,11 +62,10 @@ public class SqlCommit {
             resultModel.setSql(sql);
             resultModel = new PoolSubmit().execute(resultModel);
 
-            ResultModel resultModel1 = null;
-
             try {
-                while((resultModel1 = new PoolSubmit().fetch(resultModel.getSeed()))==null)
+                while(new PoolSubmit().fetch(resultModel.getSeed())==null) {
                     Thread.sleep(20);
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -72,6 +73,7 @@ public class SqlCommit {
             ResultSet rs = resultModel.getResultSet();
 
             LogModel logModel = new LogModel(sql);
+            //LogCommit(logModel);
             LogCommit.submit(logModel);
 
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -82,13 +84,15 @@ public class SqlCommit {
                 int count = rsmd.getColumnCount();
                 String[] name = new String[count];
 
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < count; i++) {
                     name[i] = rsmd.getColumnName(i + 1);
+                }
 
                 do {
                     Map<String, String> mapGet = new LinkedHashMap<>();
-                    for (int i = 0; i < count; i++)
+                    for (int i = 0; i < count; i++) {
                         mapGet.put(name[i], rs.getString(name[i]));
+                    }
                     list.add(mapGet);
                 } while (rs.next());
             }
@@ -102,8 +106,17 @@ public class SqlCommit {
 
     public static boolean update(String table, int no, Map<String, String> data) {
         String sql = "UPDATE `ima_management`.`" + table + "` SET ";
-        for (String key : data.keySet())
-            sql = sql + "`" + key + "` = '" + data.get(key) + "',";
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(sql);
+        for (String key : data.keySet()) {
+            stringBuilder.append("`");
+            stringBuilder.append(key);
+            stringBuilder.append("` = '");
+            stringBuilder.append(data.get(key));
+            stringBuilder.append("',");
+        }
+        sql = stringBuilder.toString();
         sql = sql.substring(0, sql.length() - 1);
         sql = sql + "WHERE `no` = " + no;
 
@@ -116,21 +129,16 @@ public class SqlCommit {
         LogCommit.submit(logModel);
 
         try {
-            while((resultModel = new PoolSubmit().fetch(resultModel.getSeed()))!=null)
+            while((resultModel = new PoolSubmit().fetch(resultModel.getSeed()))!=null) {
                 Thread.sleep(20);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        assert resultModel != null;
         return !resultModel.isResult();
 
-        /*try {
-            Statement statement = con.createStatement();
-            return !statement.execute(sql);
-        }catch(SQLException e)
-        {
-            return false;
-        }*/
     }
 
     public static boolean delete(String table, int no) {
@@ -145,29 +153,37 @@ public class SqlCommit {
         LogCommit.submit(logModel);
 
         try {
-            while((resultModel = new PoolSubmit().fetch(resultModel.getSeed()))!=null)
+            while((resultModel = new PoolSubmit().fetch(resultModel.getSeed()))!=null) {
                 Thread.sleep(20);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        assert resultModel != null;
         return !resultModel.isResult();
-
-        /*try {
-            //Statement statement = con.createStatement();
-            return !statement.execute(sql);
-        }catch(SQLException e) {
-            return false;
-        }*/
     }
 
     public static boolean insert(String table, Map<String, String> data) {
         String sql = "INSERT `ima_management`.`" + table + "` ( ";
         String value = ") VALUES (";
+
+        StringBuilder stringBuilderSQL = new StringBuilder();
+        StringBuilder stringBuilderValue = new StringBuilder();
+        stringBuilderSQL.append(sql);
+        stringBuilderValue.append(value);
         for (String key : data.keySet()) {
-            sql = sql + " `" + key + "`,";
-            value = value + " '" + data.get(key) + "',";
+            stringBuilderSQL.append(" `");
+            stringBuilderSQL.append(key);
+            stringBuilderSQL.append("`,");
+
+            stringBuilderValue.append(" '");
+            stringBuilderValue.append(data.get(key));
+            stringBuilderValue.append("',");
         }
+        sql = stringBuilderSQL.toString();
+        value = stringBuilderValue.toString();
+
         sql = sql.substring(0, sql.length() - 1);
         value = value.substring(0, value.length() - 1);
         sql = sql + value + ")";
@@ -181,19 +197,15 @@ public class SqlCommit {
         LogCommit.submit(logModel);
 
         try {
-            while((resultModel = new PoolSubmit().fetch(resultModel.getSeed()))!=null)
+            while((resultModel = new PoolSubmit().fetch(resultModel.getSeed()))!=null) {
                 Thread.sleep(20);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        assert resultModel != null;
         return !resultModel.isResult();
 
-        /*try {
-            Statement statement = con.createStatement();
-            return !statement.execute(sql);
-        }catch(SQLException e) {
-            return false;
-        }*/
     }
 }

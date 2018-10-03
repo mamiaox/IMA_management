@@ -1,11 +1,14 @@
-package cn.albumenj.util.CommandLineUtil;
+package cn.albumenj.util.commandlineutil;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * @author Albumen
+ */
 public class RequestEnter {
 
-    static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     public static int requestInt(){
         try{

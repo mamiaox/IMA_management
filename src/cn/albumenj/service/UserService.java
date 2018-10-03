@@ -8,6 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Albumen
+ */
 public class UserService {
     private static List<UserModel> userModelData;
 
@@ -17,10 +20,12 @@ public class UserService {
 
     public UserModel check(UserModel loginUserModel){
         flashUserData();
-        for(UserModel UserModel : userModelData)
-            if(UserModel.getID()== loginUserModel.getID()
-                    && UserModel.getPassword().compareTo(loginUserModel.getPassword())==0)
+        for(UserModel UserModel : userModelData) {
+            if (UserModel.getID() == loginUserModel.getID()
+                    && UserModel.getPassword().compareTo(loginUserModel.getPassword()) == 0) {
                 return UserModel;
+            }
+        }
         return null;
     }
 
@@ -36,8 +41,9 @@ public class UserService {
     public UserModel fetchUserByID(int ID){
         flashUserData();
         for(UserModel UserModel : userModelData) {
-            if (UserModel.getID() == ID)
+            if (UserModel.getID() == ID) {
                 return UserModel;
+            }
         }
         return new UserModel();
     }
@@ -60,8 +66,9 @@ public class UserService {
 
     private List<UserModel> dataListToUser(List<Map<String,String>> dataList){
         List<UserModel> userModelList = new LinkedList<>();
-        for(Map<String,String> data:dataList)
+        for(Map<String,String> data:dataList) {
             userModelList.add(dataTOUser(data));
+        }
         return userModelList;
     }
 

@@ -1,9 +1,12 @@
-package cn.albumenj.util.ConnectionPool;
+package cn.albumenj.util.connectionpool;
 
 import cn.albumenj.model.ResultModel;
 
 import java.util.Vector;
 
+/**
+ * @author Albumen
+ */
 public class PoolSubmit implements DataCallback {
     private static MyPoolImpl pool = new MyPoolImpl();
     private static Vector<ResultModel> resultModels = new Vector<>();

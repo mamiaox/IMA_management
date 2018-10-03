@@ -4,6 +4,9 @@ import cn.albumenj.Application;
 
 import java.util.Date;
 
+/**
+ * @author Albumen
+ */
 public class LogModel {
     private UserModel userModel;
     private String action;
@@ -15,9 +18,8 @@ public class LogModel {
         setTime();
     }
 
-    public void setTime() {
-        String time = new Date().toString();
-        this.time = time;
+    private void setTime() {
+        this.time = new Date().toString();
     }
 
     public String getTime() {
@@ -32,11 +34,11 @@ public class LogModel {
         return userModel;
     }
 
-    public void setAction(String action) {
+    private void setAction(String action) {
         this.action = action;
     }
 
-    public void setUserModel(UserModel userModel) {
+    private void setUserModel(UserModel userModel) {
         this.userModel = userModel;
     }
 }

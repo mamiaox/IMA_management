@@ -1,16 +1,19 @@
-package cn.albumenj.view.StaffPage;
+package cn.albumenj.view.staffpage;
 
 import cn.albumenj.model.DepartmentModel;
 import cn.albumenj.model.UserModel;
 import cn.albumenj.service.DepartmentService;
 import cn.albumenj.service.UserService;
 import cn.albumenj.util.*;
-import cn.albumenj.util.CommandLineUtil.FlushPage;
-import cn.albumenj.util.CommandLineUtil.PrintLine;
-import cn.albumenj.util.CommandLineUtil.RequestEnter;
+import cn.albumenj.util.commandlineutil.FlushPage;
+import cn.albumenj.util.commandlineutil.PrintLine;
+import cn.albumenj.util.commandlineutil.RequestEnter;
 
 import java.util.List;
 
+/**
+ * @author Albumen
+ */
 public class ModifyStaffPage {
     private UserService userService;
     private DepartmentService departmentService;
@@ -54,7 +57,7 @@ public class ModifyStaffPage {
                 do {
                     System.out.print("请输入修改后人员的QQ：");
                     userModel.setQq(RequestEnter.requestString());
-                }while (Regex.number(userModel.getQq())==false);
+                }while (!Regex.number(userModel.getQq()));
 
                 List<DepartmentModel> departmentModels = departmentService.fetchAllDepartment();
                 System.out.println("部门编号如下");
@@ -76,10 +79,12 @@ public class ModifyStaffPage {
                 userModel.setPermission(RequestEnter.requestInt());
 
                 boolean ret = userService.modify(userModel);
-                if(ret)
+                if(ret) {
                     System.out.println("修改成功！");
-                else
+                }
+                else {
                     System.out.println("修改失败！");
+                }
                 break;
             case 2:
                 break;

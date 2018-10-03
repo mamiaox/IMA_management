@@ -1,11 +1,14 @@
-package cn.albumenj.view.DepartmentPage;
+package cn.albumenj.view.departmentpage;
 
 import cn.albumenj.model.DepartmentModel;
 import cn.albumenj.service.DepartmentService;
-import cn.albumenj.util.CommandLineUtil.FlushPage;
-import cn.albumenj.util.CommandLineUtil.PrintLine;
-import cn.albumenj.util.CommandLineUtil.RequestEnter;
+import cn.albumenj.util.commandlineutil.FlushPage;
+import cn.albumenj.util.commandlineutil.PrintLine;
+import cn.albumenj.util.commandlineutil.RequestEnter;
 
+/**
+ * @author Albumen
+ */
 public class AddDepartmentPage {
     private DepartmentService departmentService;
 
@@ -27,10 +30,12 @@ public class AddDepartmentPage {
         System.out.println("正在添加请等待！");
         boolean ret = departmentService.add(addDepartmentModel);
 
-        if(ret)
+        if(ret) {
             System.out.println("添加成功！");
-        else
+        }
+        else {
             System.out.println("添加失败！");
+        }
 
         PrintLine.print();
     }

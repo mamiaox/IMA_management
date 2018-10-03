@@ -1,11 +1,14 @@
-package cn.albumenj.view.StaffPage;
+package cn.albumenj.view.staffpage;
 
 import cn.albumenj.model.UserModel;
 import cn.albumenj.service.UserService;
-import cn.albumenj.util.CommandLineUtil.FlushPage;
-import cn.albumenj.util.CommandLineUtil.PrintLine;
-import cn.albumenj.util.CommandLineUtil.RequestEnter;
+import cn.albumenj.util.commandlineutil.FlushPage;
+import cn.albumenj.util.commandlineutil.PrintLine;
+import cn.albumenj.util.commandlineutil.RequestEnter;
 
+/**
+ * @author Albumen
+ */
 public class DeleteStaffPage {
     private UserService userService;
 
@@ -30,10 +33,12 @@ public class DeleteStaffPage {
         switch (RequestEnter.requestInt()){
             case 1:
                 boolean ret = userService.delete(deleteUserModel);
-                if(ret)
+                if(ret) {
                     System.out.println("删除成功！");
-                else
+                }
+                else {
                     System.out.println("删除失败！");
+                }
                 break;
             case 2:
                 break;

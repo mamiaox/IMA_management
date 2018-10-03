@@ -1,9 +1,12 @@
-package cn.albumenj.util.ConnectionPool;
+package cn.albumenj.util.connectionpool;
 
 import cn.albumenj.model.ResultModel;
 
 import java.sql.ResultSet;
 
+/**
+ * @author Albumen
+ */
 public class ConcurrencySubmit implements Runnable {
     private PooledConnection pooledConnection;
     private ResultModel resultModel;
@@ -24,6 +27,8 @@ public class ConcurrencySubmit implements Runnable {
             case 2:
                 boolean result1 = pooledConnection.execute(resultModel.getSql());
                 resultModel.setResult(result1);
+                break;
+            default:
                 break;
         }
         dataCallback.fetchFinished(resultModel);

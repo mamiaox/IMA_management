@@ -1,12 +1,15 @@
-package cn.albumenj.util.ConnectionPool;
+package cn.albumenj.util.connectionpool;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+/**
+ * @author Albumen
+ */
 public class PooledConnection {
 
-    private boolean isBusy = false;
+    private boolean isBusy;
     private Connection connection;
 
     public PooledConnection(Connection connection, boolean isBusy) {

@@ -1,13 +1,16 @@
-package cn.albumenj.view.StaffPage;
+package cn.albumenj.view.staffpage;
 
 import cn.albumenj.model.UserModel;
 import cn.albumenj.service.UserService;
-import cn.albumenj.util.CommandLineUtil.FlushPage;
-import cn.albumenj.util.CommandLineUtil.PrintLine;
-import cn.albumenj.util.CommandLineUtil.RequestEnter;
+import cn.albumenj.util.commandlineutil.FlushPage;
+import cn.albumenj.util.commandlineutil.PrintLine;
+import cn.albumenj.util.commandlineutil.RequestEnter;
 
 import java.util.List;
 
+/**
+ * @author Albumen
+ */
 public class ListStaffPage {
     private UserService userService;
 

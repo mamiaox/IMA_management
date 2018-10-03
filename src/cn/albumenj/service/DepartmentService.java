@@ -8,6 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Albumen
+ */
 public class DepartmentService {
     private static List<DepartmentModel> departmentModelData;
 
@@ -27,8 +30,9 @@ public class DepartmentService {
     public DepartmentModel fetchDepartmentByID(int ID){
         flashDepartmentData();
         for(DepartmentModel DepartmentModel : departmentModelData) {
-            if (DepartmentModel.getID() == ID)
+            if (DepartmentModel.getID() == ID) {
                 return DepartmentModel;
+            }
         }
         return new DepartmentModel();
     }
@@ -47,8 +51,9 @@ public class DepartmentService {
 
     private List<DepartmentModel> dataListToDepartment(List<Map<String,String>> dataList){
         List<DepartmentModel> departmentModelList = new LinkedList<>();
-        for(Map<String,String> data:dataList)
+        for(Map<String,String> data:dataList) {
             departmentModelList.add(dataToDepartment(data));
+        }
         return departmentModelList;
     }
 

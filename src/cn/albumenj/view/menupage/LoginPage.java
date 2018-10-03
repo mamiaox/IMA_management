@@ -1,12 +1,15 @@
-package cn.albumenj.view.MenuPage;
+package cn.albumenj.view.menupage;
 import cn.albumenj.model.UserModel;
 import cn.albumenj.service.UserService;
 import cn.albumenj.util.*;
 import cn.albumenj.*;
-import cn.albumenj.util.CommandLineUtil.FlushPage;
-import cn.albumenj.util.CommandLineUtil.PrintLine;
-import cn.albumenj.util.CommandLineUtil.RequestEnter;
+import cn.albumenj.util.commandlineutil.FlushPage;
+import cn.albumenj.util.commandlineutil.PrintLine;
+import cn.albumenj.util.commandlineutil.RequestEnter;
 
+/**
+ * @author Albumen
+ */
 public class LoginPage {
     private Application application;
     private UserService userService;
@@ -37,7 +40,7 @@ public class LoginPage {
         if((loginUserModel = userService.check(loginUserModel)) != null){
             System.out.println("登陆成功！");
             PrintLine.print();
-            application.loginedUserModel = loginUserModel;
+            cn.albumenj.Application.loginedUserModel = loginUserModel;
             return true;
         }
         else{
