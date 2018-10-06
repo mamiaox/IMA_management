@@ -9,7 +9,6 @@ import cn.albumenj.model.ResultModel;
  */
 public class LogCommit {
     public static void submit(LogModel logModel) {
-        //INSERT INTO `ima_management`.`log`(`UserModel`, `action`, `time`) VALUES ('1', '1', '1')
         String user = logModel.getUserModel().getID() + " "
                 + logModel.getUserModel().getNo() + " "
                 + logModel.getUserModel().getName();

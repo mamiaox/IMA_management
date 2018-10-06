@@ -14,8 +14,13 @@ import java.util.Map;
 public class UserService {
     private static List<UserModel> userModelData;
 
-    public boolean add(UserModel addUserModel){
-        return SqlCommit.insert("users",userToData(addUserModel));
+    public void add(UserModel addUserModel){
+        boolean ret = SqlCommit.insert("users",userToData(addUserModel));
+        if (ret) {
+            System.out.println("添加成功！");
+        } else {
+            System.out.println("添加失败！");
+        }
     }
 
     public UserModel check(UserModel loginUserModel){
@@ -29,8 +34,13 @@ public class UserService {
         return null;
     }
 
-    public boolean delete(UserModel deleteUserModel){
-        return SqlCommit.delete("users", deleteUserModel.getNo());
+    public void delete(UserModel deleteUserModel){
+        boolean ret = SqlCommit.delete("users", deleteUserModel.getNo());
+        if (ret) {
+            System.out.println("删除成功！");
+        } else {
+            System.out.println("删除失败！");
+        }
     }
 
     public List<UserModel> fetchAllUser(){
@@ -47,8 +57,13 @@ public class UserService {
         }
         return new UserModel();
     }
-    public boolean modify(UserModel modifyUserModel){
-        return SqlCommit.update("users", modifyUserModel.getNo(),userToData(modifyUserModel));
+    public void modify(UserModel modifyUserModel){
+        boolean ret = SqlCommit.update("users", modifyUserModel.getNo(),userToData(modifyUserModel));
+        if (ret) {
+            System.out.println("修改成功！");
+        } else {
+            System.out.println("修改失败！");
+        }
     }
 
     private UserModel dataTOUser(Map<String,String> data){

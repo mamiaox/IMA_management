@@ -87,4 +87,12 @@ public class UserModel {
     public void setQq(String qq) {
         this.qq = qq;
     }
+
+    public boolean isChairman() {
+        return permission == 1;
+    }
+
+    public boolean isAdmin() {
+        return ( permission == 1 || permission == 2 );
+    }
 }

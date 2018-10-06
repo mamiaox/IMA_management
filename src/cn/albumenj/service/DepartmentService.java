@@ -14,12 +14,22 @@ import java.util.Map;
 public class DepartmentService {
     private static List<DepartmentModel> departmentModelData;
 
-    public boolean add(DepartmentModel addDepartmentModel){
-        return SqlCommit.insert("department",departmentToData(addDepartmentModel));
+    public void add(DepartmentModel addDepartmentModel){
+         boolean ret = SqlCommit.insert("department",departmentToData(addDepartmentModel));
+        if (ret) {
+            System.out.println("添加成功！");
+        } else {
+            System.out.println("添加失败！");
+        }
     }
 
-    public boolean delete(DepartmentModel deleteDepartmentModel){
-        return SqlCommit.delete("department", deleteDepartmentModel.getNo());
+    public void delete(DepartmentModel deleteDepartmentModel){
+        boolean ret = SqlCommit.delete("department", deleteDepartmentModel.getNo());
+        if (ret) {
+            System.out.println("添加成功！");
+        } else {
+            System.out.println("添加失败！");
+        }
     }
 
     public List<DepartmentModel> fetchAllDepartment(){
@@ -37,8 +47,13 @@ public class DepartmentService {
         return new DepartmentModel();
     }
 
-    public boolean modify(DepartmentModel modifyDepartmentModel){
-        return SqlCommit.update("department", modifyDepartmentModel.getNo(),departmentToData(modifyDepartmentModel));
+    public void modify(DepartmentModel modifyDepartmentModel){
+        boolean ret = SqlCommit.update("department", modifyDepartmentModel.getNo(),departmentToData(modifyDepartmentModel));
+        if (ret) {
+            System.out.println("添加成功！");
+        } else {
+            System.out.println("添加失败！");
+        }
     }
 
     private DepartmentModel dataToDepartment(Map<String,String> data){

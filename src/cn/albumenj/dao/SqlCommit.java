@@ -56,7 +56,6 @@ public class SqlCommit {
         List<Map<String, String>> list = new LinkedList<>();
         String sql = "SELECT * FROM `ima_management`.`" + table + "`";
         try {
-            //Statement statement = con.createStatement();
             ResultModel resultModel = new ResultModel();
             resultModel.setMod(1);
             resultModel.setSql(sql);

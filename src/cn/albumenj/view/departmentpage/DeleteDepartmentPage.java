@@ -1,25 +1,15 @@
 package cn.albumenj.view.departmentpage;
 
 import cn.albumenj.model.DepartmentModel;
-import cn.albumenj.service.DepartmentService;
-import cn.albumenj.util.commandlineutil.FlushPage;
-import cn.albumenj.util.commandlineutil.PrintLine;
 import cn.albumenj.util.commandlineutil.RequestEnter;
+import cn.albumenj.view.Method;
 
 /**
  * @author Albumen
  */
-public class DeleteDepartmentPage {
-    private DepartmentService departmentService;
-
-    public void setDepartmentService(DepartmentService departmentService) {
-        this.departmentService = departmentService;
-    }
-
-    public void show(){
-        FlushPage.flush();
-        PrintLine.print();
-
+public class DeleteDepartmentPage extends Method {
+    @Override
+    public void page() {
         System.out.print("请输入要删除部门编号：");
         DepartmentModel departmentModel = departmentService.fetchDepartmentByID(RequestEnter.requestInt());
 
@@ -27,22 +17,8 @@ public class DeleteDepartmentPage {
         System.out.println(departmentModel.getID() + " " + departmentModel.getName());
         System.out.println();
 
-        System.out.print("是否删除（是 1 /否 2）：");
-        switch (RequestEnter.requestInt()){
-            case 1:
-                boolean ret = departmentService.delete(departmentModel);
-                if(ret) {
-                    System.out.println("删除成功！");
-                }
-                else {
-                    System.out.println("删除失败！");
-                }
-                break;
-            case 2:
-                break;
-            default:
-                break;
+        if(RequestEnter.requestContinueDo()) {
+            departmentService.delete(departmentModel);
         }
-        PrintLine.print();
     }
 }

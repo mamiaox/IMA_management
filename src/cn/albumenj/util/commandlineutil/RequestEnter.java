@@ -22,4 +22,21 @@ public class RequestEnter {
     public static String requestString(){
         return scanner.next();
     }
+
+    public static boolean requestContinueDo(){
+        System.out.print("是否继续执行（是 1 /否 2）：");
+        switch (requestInt()){
+            case 1:
+                return true;
+            case 2:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    public static void requestContinue(){
+        System.out.println("请输入任意内容以返回。");
+        requestString();
+    }
 }

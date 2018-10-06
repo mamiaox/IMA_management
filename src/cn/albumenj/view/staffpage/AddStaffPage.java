@@ -2,34 +2,18 @@ package cn.albumenj.view.staffpage;
 
 import cn.albumenj.model.DepartmentModel;
 import cn.albumenj.model.UserModel;
-import cn.albumenj.service.DepartmentService;
-import cn.albumenj.service.UserService;
 import cn.albumenj.util.*;
-import cn.albumenj.util.commandlineutil.FlushPage;
-import cn.albumenj.util.commandlineutil.PrintLine;
 import cn.albumenj.util.commandlineutil.RequestEnter;
+import cn.albumenj.view.Method;
 
 import java.util.List;
 
 /**
  * @author Albumen
  */
-public class AddStaffPage {
-    private UserService userService;
-    private DepartmentService departmentService;
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    public void setDepartmentService(DepartmentService departmentService) {
-        this.departmentService = departmentService;
-    }
-
-    public void show() {
-        FlushPage.flush();
-        PrintLine.print();
-
+public class AddStaffPage extends Method {
+    @Override
+    public void page() {
         UserModel addUserModel = new UserModel();
         System.out.print("请输入增加人员的学号：");
         addUserModel.setID(RequestEnter.requestInt());
@@ -68,15 +52,7 @@ public class AddStaffPage {
         addUserModel.setPermission(RequestEnter.requestInt());
 
         System.out.println("正在添加请等待！");
-        boolean ret = userService.add(addUserModel);
 
-        if (ret) {
-            System.out.println("添加成功！");
-        }
-        else {
-            System.out.println("添加失败！");
-        }
-
-        PrintLine.print();
+        userService.add(addUserModel);
     }
 }
