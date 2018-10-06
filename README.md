@@ -37,11 +37,11 @@ IMA人员管理
     │           │   ├── DepartmentService.java                 //部门数据服务  
     │           │   └── UserService.java                       //人员数据服务  
     │           ├── util                                         
-    │           │   ├── CommandLineUtil                        //命令行模式下交互工具 
+    │           │   ├── commandlineutil                        //命令行模式下交互工具 
     │           │   │   ├── FlushPage.java                     //清屏  
     │           │   │   ├── PrintLine.java                     //分割线打印   
     │           │   │   └── RequestEnter.java                  //获取输入  
-    │           │   ├── ConnectionPool                         //连接池  
+    │           │   ├── connectionpool                         //连接池  
     │           │   │   ├── ConcurrencySubmit.java             //多线程提交请求  
     │           │   │   ├── ConnectionConfig.java              //数据库连接配置文件  
     │           │   │   ├── DataCallback.java                  //数据回调接口  
@@ -52,17 +52,17 @@ IMA人员管理
     │           │   ├── PasswordDecode.java                    //密码加密  
     │           │   └── Regex.java                             //正则表达式检测  
     │           ├── view                                         
-    │           │   ├── DepertmentPage                         //部门页面  
+    │           │   ├── depertmentpage                         //部门页面  
     │           │   │   ├── AddDepartmentPage.java              
     │           │   │   ├── DeleteDepartmentPage.java            
     │           │   │   ├── ListDepartmentPage.java            
     │           │   │   └── ModifyDepartmentPage.java            
-    │           │   ├── MenuPage                               //菜单页面  
+    │           │   ├── menupage                               //菜单页面  
     │           │   │   ├── DepartmentManageMenu.java            
     │           │   │   ├── LoginPage.java                       
     │           │   │   ├── MenuPage.java                        
     │           │   │   └── StaffManagePage.java                 
-    │           │   └── StaffPage                              //人员页面  
+    │           │   └── staffpage                              //人员页面  
     │           │   │   ├── AddStaffPage.java                    
     │           │   │   ├── DeleteStaffPage.java                 
     │           │   │   ├── ListStaffPage.java                   
