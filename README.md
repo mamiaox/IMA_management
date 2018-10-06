@@ -38,8 +38,7 @@ IMA人员管理
     │           │   └── UserService.java                       //人员数据服务  
     │           ├── util                                         
     │           │   ├── commandlineutil                        //命令行模式下交互工具 
-    │           │   │   ├── FlushPage.java                     //清屏  
-    │           │   │   ├── PrintLine.java                     //分割线打印   
+    │           │   │   ├── Print.java                         //打印工具
     │           │   │   └── RequestEnter.java                  //获取输入  
     │           │   ├── connectionpool                         //连接池  
     │           │   │   ├── ConcurrencySubmit.java             //多线程提交请求  
@@ -55,6 +54,7 @@ IMA人员管理
     │           │   ├── depertmentpage                         //部门页面  
     │           │   │   ├── AddDepartmentPage.java              
     │           │   │   ├── DeleteDepartmentPage.java            
+    │           │   │   ├── ListAllDepartmentPage.java            
     │           │   │   ├── ListDepartmentPage.java            
     │           │   │   └── ModifyDepartmentPage.java            
     │           │   ├── menupage                               //菜单页面  
@@ -62,11 +62,19 @@ IMA人员管理
     │           │   │   ├── LoginPage.java                       
     │           │   │   ├── MenuPage.java                        
     │           │   │   └── StaffManagePage.java                 
-    │           │   └── staffpage                              //人员页面  
+    │           │   ├── staffpage                              //人员页面  
     │           │   │   ├── AddStaffPage.java                    
     │           │   │   ├── DeleteStaffPage.java                 
+    │           │   │   ├── ListAllStaffPage.java                   
     │           │   │   ├── ListStaffPage.java                   
     │           │   │   └── ModifyStaffPage.java                 
+    │           │   ├── pagemanagement                         //页面逻辑  
+    │           │   │   ├── DepartmentManage.java                   
+    │           │   │   ├── MenuManage.java                   
+    │           │   │   └── StaffManage.java                 
+    │           │   ├── Manage.java                            //管理页面父类
+    │           │   ├── Munu.java                              //菜单页面父类
+    │           │   └── Method.java                            //功能页面父类
     │           └── Application.java                           //主程序逻辑实现  
     ├── README.md                                              //项目说明文件  
     └── IMA management.iml                                     //IDEA项目文件  
