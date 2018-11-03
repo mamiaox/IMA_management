@@ -1,5 +1,6 @@
 package cn.albumenj.dao;
 
+import cn.albumenj.model.SqlModel;
 import cn.albumenj.util.connectionpool.PoolSubmit;
 import cn.albumenj.model.LogModel;
 import cn.albumenj.model.ResultModel;
@@ -55,16 +56,21 @@ public class SqlCommit {
     public static List<Map<String, String>> selectWhere(String table,Map<String,String> condition){
         List<Map<String, String>> list = new LinkedList<>();
         String sql = "SELECT * FROM `ima_management`.`" + table + "`";
+        Map<Integer,String> prepareCondition = new LinkedHashMap<>();
         if(!condition.isEmpty()) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(sql);
             stringBuilder.append(" WHERE ");
+            int count = 1;
             for (String key : condition.keySet()) {
                 stringBuilder.append("`");
                 stringBuilder.append(key);
-                stringBuilder.append("` = '");
-                stringBuilder.append(condition.get(key));
-                stringBuilder.append("',");
+
+                stringBuilder.append("` = ");
+                stringBuilder.append("?");
+                stringBuilder.append(",");
+                prepareCondition.put(count,condition.get(key));
+                count++;
             }
             sql = stringBuilder.toString();
             sql = sql.substring(0, sql.length() - 1);
@@ -73,7 +79,10 @@ public class SqlCommit {
         try {
             ResultModel resultModel = new ResultModel();
             resultModel.setMod(1);
-            resultModel.setSql(sql);
+            SqlModel sqlModel = new SqlModel();
+            sqlModel.setSql(sql);
+            sqlModel.setCondition(prepareCondition);
+            resultModel.setSql(sqlModel);
             resultModel = new PoolSubmit().execute(resultModel);
 
             try {
@@ -120,15 +129,20 @@ public class SqlCommit {
 
     public static boolean update(String table, int no, Map<String, String> data) {
         String sql = "UPDATE `ima_management`.`" + table + "` SET ";
+        Map<Integer,String> prepareCondition = new LinkedHashMap<>();
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(sql);
+        int count = 1;
         for (String key : data.keySet()) {
             stringBuilder.append("`");
             stringBuilder.append(key);
-            stringBuilder.append("` = '");
-            stringBuilder.append(data.get(key));
-            stringBuilder.append("',");
+
+            stringBuilder.append("` = ");
+            stringBuilder.append("?");
+            stringBuilder.append(",");
+            prepareCondition.put(count,data.get(key));
+            count++;
         }
         sql = stringBuilder.toString();
         sql = sql.substring(0, sql.length() - 1);
@@ -136,7 +150,10 @@ public class SqlCommit {
 
         ResultModel resultModel = new ResultModel();
         resultModel.setMod(2);
-        resultModel.setSql(sql);
+        SqlModel sqlModel = new SqlModel();
+        sqlModel.setSql(sql);
+        sqlModel.setCondition(prepareCondition);
+        resultModel.setSql(sqlModel);
         resultModel = new PoolSubmit().execute(resultModel);
 
         LogModel logModel = new LogModel(sql);
@@ -156,11 +173,16 @@ public class SqlCommit {
     }
 
     public static boolean delete(String table, int no) {
-        String sql = "DELETE FROM `ima_management`.`" + table + "` WHERE `no` = " + no;
+        String sql = "DELETE FROM `ima_management`.`" + table + "` WHERE `no` = " + "?";
+        Map<Integer,String> prepareCondition = new LinkedHashMap<>();
+        prepareCondition.put(1,no+"");
 
         ResultModel resultModel = new ResultModel();
         resultModel.setMod(2);
-        resultModel.setSql(sql);
+        SqlModel sqlModel = new SqlModel();
+        sqlModel.setSql(sql);
+        sqlModel.setCondition(prepareCondition);
+        resultModel.setSql(sqlModel);
         resultModel = new PoolSubmit().execute(resultModel);
 
         LogModel logModel = new LogModel(sql);
@@ -181,19 +203,22 @@ public class SqlCommit {
     public static boolean insert(String table, Map<String, String> data) {
         String sql = "INSERT `ima_management`.`" + table + "` ( ";
         String value = ") VALUES (";
+        Map<Integer,String> prepareCondition = new LinkedHashMap<>();
 
         StringBuilder stringBuilderSQL = new StringBuilder();
         StringBuilder stringBuilderValue = new StringBuilder();
         stringBuilderSQL.append(sql);
         stringBuilderValue.append(value);
+        int count = 1;
         for (String key : data.keySet()) {
             stringBuilderSQL.append(" `");
             stringBuilderSQL.append(key);
             stringBuilderSQL.append("`,");
 
-            stringBuilderValue.append(" '");
-            stringBuilderValue.append(data.get(key));
-            stringBuilderValue.append("',");
+            stringBuilderValue.append("?");
+            stringBuilderValue.append(",");
+            prepareCondition.put(count,data.get(key));
+            count++;
         }
         sql = stringBuilderSQL.toString();
         value = stringBuilderValue.toString();
@@ -204,7 +229,10 @@ public class SqlCommit {
 
         ResultModel resultModel = new ResultModel();
         resultModel.setMod(2);
-        resultModel.setSql(sql);
+        SqlModel sqlModel = new SqlModel();
+        sqlModel.setSql(sql);
+        sqlModel.setCondition(prepareCondition);
+        resultModel.setSql(sqlModel);
         resultModel = new PoolSubmit().execute(resultModel);
 
         LogModel logModel = new LogModel(sql);

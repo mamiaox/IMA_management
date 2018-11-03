@@ -7,7 +7,7 @@ import java.sql.ResultSet;
  */
 public class ResultModel {
     private double seed;
-    private String sql;
+    private SqlModel sql;
     private int mod;
     private ResultSet resultSet;
     private boolean result;
@@ -16,23 +16,15 @@ public class ResultModel {
         return seed;
     }
 
-    public ResultSet getResultSet() {
-        return resultSet;
-    }
-
-    public void setResultSet(ResultSet resultSet) {
-        this.resultSet = resultSet;
-    }
-
     public void setSeed(double seed) {
         this.seed = seed;
     }
 
-    public String getSql() {
+    public SqlModel getSql() {
         return sql;
     }
 
-    public void setSql(String sql) {
+    public void setSql(SqlModel sql) {
         this.sql = sql;
     }
 
@@ -44,11 +36,19 @@ public class ResultModel {
         this.mod = mod;
     }
 
-    public void setResult(boolean result) {
-        this.result = result;
+    public ResultSet getResultSet() {
+        return resultSet;
+    }
+
+    public void setResultSet(ResultSet resultSet) {
+        this.resultSet = resultSet;
     }
 
     public boolean isResult() {
         return result;
+    }
+
+    public void setResult(boolean result) {
+        this.result = result;
     }
 }

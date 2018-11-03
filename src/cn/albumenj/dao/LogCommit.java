@@ -1,8 +1,12 @@
 package cn.albumenj.dao;
 
+import cn.albumenj.model.SqlModel;
 import cn.albumenj.util.connectionpool.PoolSubmit;
 import cn.albumenj.model.LogModel;
 import cn.albumenj.model.ResultModel;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author Albumen
@@ -13,11 +17,19 @@ public class LogCommit {
                 + logModel.getUserModel().getNo() + " "
                 + logModel.getUserModel().getName();
         String sql = "INSERT INTO `ima_management`.`log`(`user`, `action`, `time" +
-                "`) VALUES ('" + user + "', '" + logModel.getAction() + "', '" + logModel.getTime() + "')";
+                "`) VALUES ( ?, ?, ?)";
+
+        Map<Integer,String> prepareCondition = new LinkedHashMap<>();
+        prepareCondition.put(1,user);
+        prepareCondition.put(2,logModel.getAction());
+        prepareCondition.put(3,logModel.getTime());
 
         ResultModel resultModel = new ResultModel();
         resultModel.setMod(2);
-        resultModel.setSql(sql);
-        //new PoolSubmit().execute(resultModel);
+        SqlModel sqlModel = new SqlModel();
+        sqlModel.setSql(sql);
+        sqlModel.setCondition(prepareCondition);
+        resultModel.setSql(sqlModel);
+        new PoolSubmit().execute(resultModel);
     }
 }

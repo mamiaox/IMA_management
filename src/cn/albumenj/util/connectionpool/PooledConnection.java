@@ -1,6 +1,9 @@
 package cn.albumenj.util.connectionpool;
 
+import cn.albumenj.model.SqlModel;
+
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -37,25 +40,30 @@ public class PooledConnection {
         this.connection = connection;
     }
 
-    public ResultSet query(String sql) {
-        Statement statement;
+    public ResultSet query(SqlModel sql) {
+        PreparedStatement preparedStatement;
         ResultSet resultSet = null;
         try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
+            preparedStatement = connection.prepareStatement(sql.getSql());
+            for(int i=1;i<=sql.getCondition().size();i++){
+                preparedStatement.setString(i,sql.getCondition().get(i));
+            }
+            resultSet = preparedStatement.executeQuery();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return resultSet;
     }
 
-    public boolean execute(String sql) {
-        Statement statement;
-        ResultSet resultSet = null;
+    public boolean execute(SqlModel sql) {
+        PreparedStatement preparedStatement;
         boolean ret = false;
         try {
-            statement = connection.createStatement();
-            ret = statement.execute(sql);
+            preparedStatement = connection.prepareStatement(sql.getSql());
+            for(int i=1;i<=sql.getCondition().size();i++){
+                preparedStatement.setString(i,sql.getCondition().get(i));
+            }
+            ret = preparedStatement.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
