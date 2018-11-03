@@ -23,7 +23,8 @@ public class ModifyDepartmentPage extends Method {
             System.out.print("请输入修改后部门名称：");
             departmentModel.setName(RequestEnter.requestString());
 
-            departmentService.modify(departmentModel);
+            boolean ret = departmentService.modify(departmentModel);
+            resultOutput(ret,cn.albumenj.view.Method.method.MODIFY);
         }
     }
 }

@@ -20,7 +20,8 @@ public class DeleteStaffPage extends Method {
         System.out.println();
 
         if(RequestEnter.requestContinueDo()) {
-            userService.delete(deleteUserModel);
+            boolean ret = userService.delete(deleteUserModel);
+            resultOutput(ret, method.DELETE);
         }
     }
 }

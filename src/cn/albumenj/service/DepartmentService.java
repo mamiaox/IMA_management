@@ -12,34 +12,25 @@ import java.util.Map;
  * @author Albumen
  */
 public class DepartmentService {
-    private static List<DepartmentModel> departmentModelData;
 
-    public void add(DepartmentModel addDepartmentModel){
-         boolean ret = SqlCommit.insert("department",departmentToData(addDepartmentModel));
-        if (ret) {
-            System.out.println("添加成功！");
-        } else {
-            System.out.println("添加失败！");
-        }
+    public boolean add(DepartmentModel addDepartmentModel){
+        return SqlCommit.insert("department",departmentToData(addDepartmentModel));
     }
 
-    public void delete(DepartmentModel deleteDepartmentModel){
-        boolean ret = SqlCommit.delete("department", deleteDepartmentModel.getNo());
-        if (ret) {
-            System.out.println("添加成功！");
-        } else {
-            System.out.println("添加失败！");
-        }
+    public boolean delete(DepartmentModel deleteDepartmentModel){
+        return SqlCommit.delete("department", deleteDepartmentModel.getNo());
     }
 
     public List<DepartmentModel> fetchAllDepartment(){
-        flashDepartmentData();
-        return departmentModelData;
+        Map<String,String> condition = new LinkedHashMap<>();
+        return selectDepartmentData(condition);
     }
 
     public DepartmentModel fetchDepartmentByID(int ID){
-        flashDepartmentData();
-        for(DepartmentModel DepartmentModel : departmentModelData) {
+        Map<String,String> condition = new LinkedHashMap<>();
+        condition.put("id",""+ID);
+        List<DepartmentModel> result = selectDepartmentData(condition);
+        for(DepartmentModel DepartmentModel : result) {
             if (DepartmentModel.getID() == ID) {
                 return DepartmentModel;
             }
@@ -47,13 +38,8 @@ public class DepartmentService {
         return new DepartmentModel();
     }
 
-    public void modify(DepartmentModel modifyDepartmentModel){
-        boolean ret = SqlCommit.update("department", modifyDepartmentModel.getNo(),departmentToData(modifyDepartmentModel));
-        if (ret) {
-            System.out.println("添加成功！");
-        } else {
-            System.out.println("添加失败！");
-        }
+    public boolean modify(DepartmentModel modifyDepartmentModel){
+        return SqlCommit.update("department", modifyDepartmentModel.getNo(),departmentToData(modifyDepartmentModel));
     }
 
     private DepartmentModel dataToDepartment(Map<String,String> data){
@@ -72,8 +58,8 @@ public class DepartmentService {
         return departmentModelList;
     }
 
-    private void flashDepartmentData(){
-        departmentModelData = dataListToDepartment(SqlCommit.select("department"));
+    private List<DepartmentModel> selectDepartmentData(Map<String,String> condition){
+        return dataListToDepartment(SqlCommit.selectWhere("department",condition));
     }
 
     private Map<String,String> departmentToData(DepartmentModel DepartmentModel){

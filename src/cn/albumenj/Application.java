@@ -2,6 +2,7 @@ package cn.albumenj;
 import cn.albumenj.model.*;
 import cn.albumenj.service.DepartmentService;
 import cn.albumenj.service.UserService;
+import cn.albumenj.view.Manage;
 import cn.albumenj.view.Menu;
 import cn.albumenj.view.Method;
 import cn.albumenj.view.departmentpage.*;
@@ -38,10 +39,11 @@ public class Application {
 
         //Login Success
         //MenuPage
-        MenuManage menuManage = new MenuManage();
+        Manage menuManage = new MenuManage();
         menuManage.setDepartmentService(departmentService);
         menuManage.setUserService(userService);
         menuManage.show();
 
     }
+
 }

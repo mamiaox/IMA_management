@@ -18,6 +18,7 @@ public class AddDepartmentPage extends Method {
         addDepartmentModel.setName(RequestEnter.requestString());
 
         System.out.println("正在添加请等待！");
-        departmentService.add(addDepartmentModel);
+        boolean ret = departmentService.add(addDepartmentModel);
+        resultOutput(ret, method.ADD);
     }
 }

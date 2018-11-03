@@ -18,7 +18,8 @@ public class DeleteDepartmentPage extends Method {
         System.out.println();
 
         if(RequestEnter.requestContinueDo()) {
-            departmentService.delete(departmentModel);
+            boolean ret = departmentService.delete(departmentModel);
+            resultOutput(ret, method.DELETE);
         }
     }
 }

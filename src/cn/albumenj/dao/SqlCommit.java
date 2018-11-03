@@ -52,9 +52,24 @@ public class SqlCommit {
         Connected = connected;
     }
 
-    public static List<Map<String, String>> select(String table) {
+    public static List<Map<String, String>> selectWhere(String table,Map<String,String> condition){
         List<Map<String, String>> list = new LinkedList<>();
         String sql = "SELECT * FROM `ima_management`.`" + table + "`";
+        if(!condition.isEmpty()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(sql);
+            stringBuilder.append(" WHERE ");
+            for (String key : condition.keySet()) {
+                stringBuilder.append("`");
+                stringBuilder.append(key);
+                stringBuilder.append("` = '");
+                stringBuilder.append(condition.get(key));
+                stringBuilder.append("',");
+            }
+            sql = stringBuilder.toString();
+            sql = sql.substring(0, sql.length() - 1);
+        }
+
         try {
             ResultModel resultModel = new ResultModel();
             resultModel.setMod(1);

@@ -18,6 +18,6 @@ public class LogCommit {
         ResultModel resultModel = new ResultModel();
         resultModel.setMod(2);
         resultModel.setSql(sql);
-        new PoolSubmit().execute(resultModel);
+        //new PoolSubmit().execute(resultModel);
     }
 }

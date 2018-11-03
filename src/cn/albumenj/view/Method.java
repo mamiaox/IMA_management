@@ -30,4 +30,30 @@ public abstract class Method {
     }
 
     abstract public void page();
+
+    protected enum method{
+        ADD,DELETE,MODIFY
+    }
+
+    protected void resultOutput(boolean result,method method){
+        String kind = "";
+        switch (method){
+            case ADD:
+                kind = "添加";
+                break;
+            case DELETE:
+                kind = "删除";
+                break;
+            case MODIFY:
+                kind = "修改";
+                break;
+            default:
+                break;
+        }
+        if (result) {
+            System.out.println(kind + "成功！");
+        } else {
+            System.out.println(kind + "失败！");
+        }
+    }
 }

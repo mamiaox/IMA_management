@@ -53,6 +53,7 @@ public class AddStaffPage extends Method {
 
         System.out.println("正在添加请等待！");
 
-        userService.add(addUserModel);
+        boolean ret = userService.add(addUserModel);
+        resultOutput(ret, method.ADD);
     }
 }

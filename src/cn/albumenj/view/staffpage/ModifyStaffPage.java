@@ -60,7 +60,8 @@ public class ModifyStaffPage extends Method {
             System.out.print("请输入修改后人员的权限：");
             userModel.setPermission(RequestEnter.requestInt());
 
-            userService.modify(userModel);
+            boolean ret = userService.modify(userModel);
+            resultOutput(ret,cn.albumenj.view.Method.method.MODIFY);
         }
     }
 }

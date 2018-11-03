@@ -12,20 +12,16 @@ import java.util.Map;
  * @author Albumen
  */
 public class UserService {
-    private static List<UserModel> userModelData;
-
-    public void add(UserModel addUserModel){
-        boolean ret = SqlCommit.insert("users",userToData(addUserModel));
-        if (ret) {
-            System.out.println("添加成功！");
-        } else {
-            System.out.println("添加失败！");
-        }
+    public boolean add(UserModel addUserModel){
+        return SqlCommit.insert("users",userToData(addUserModel));
     }
 
     public UserModel check(UserModel loginUserModel){
-        flashUserData();
-        for(UserModel UserModel : userModelData) {
+        Map<String,String> condition = new LinkedHashMap<>();
+        condition.put("id",loginUserModel.getID()+"");
+        List<UserModel> result = selectUserData(condition);
+
+        for(UserModel UserModel : result) {
             if (UserModel.getID() == loginUserModel.getID()
                     && UserModel.getPassword().compareTo(loginUserModel.getPassword()) == 0) {
                 return UserModel;
@@ -34,36 +30,29 @@ public class UserService {
         return null;
     }
 
-    public void delete(UserModel deleteUserModel){
-        boolean ret = SqlCommit.delete("users", deleteUserModel.getNo());
-        if (ret) {
-            System.out.println("删除成功！");
-        } else {
-            System.out.println("删除失败！");
-        }
+    public boolean delete(UserModel deleteUserModel){
+        return SqlCommit.delete("users", deleteUserModel.getNo());
     }
 
     public List<UserModel> fetchAllUser(){
-        flashUserData();
-        return userModelData;
+        Map<String,String> condition = new LinkedHashMap<>();
+        return selectUserData(condition);
     }
 
     public UserModel fetchUserByID(int ID){
-        flashUserData();
-        for(UserModel UserModel : userModelData) {
+        Map<String,String> condition = new LinkedHashMap<>();
+        condition.put("id",ID+"");
+        List<UserModel> result = selectUserData(condition);
+
+        for(UserModel UserModel : result) {
             if (UserModel.getID() == ID) {
                 return UserModel;
             }
         }
         return new UserModel();
     }
-    public void modify(UserModel modifyUserModel){
-        boolean ret = SqlCommit.update("users", modifyUserModel.getNo(),userToData(modifyUserModel));
-        if (ret) {
-            System.out.println("修改成功！");
-        } else {
-            System.out.println("修改失败！");
-        }
+    public boolean modify(UserModel modifyUserModel){
+        return SqlCommit.update("users", modifyUserModel.getNo(),userToData(modifyUserModel));
     }
 
     private UserModel dataTOUser(Map<String,String> data){
@@ -87,8 +76,8 @@ public class UserService {
         return userModelList;
     }
 
-    private void flashUserData(){
-        userModelData = dataListToUser(SqlCommit.select("users"));
+    private List<UserModel> selectUserData(Map<String,String> condition){
+        return dataListToUser(SqlCommit.selectWhere("users",condition));
     }
 
     private Map<String,String> userToData(UserModel UserModel){
