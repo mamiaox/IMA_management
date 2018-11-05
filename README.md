@@ -31,7 +31,9 @@ IMA人员管理
     │           ├── model                                        
     │           │   ├── LogModel.java                          //日志模型  
     │           │   ├── ResultModel.java                       //数据结果模型  
-    │           │   ├── DepartmentModel.java                   //部门模型  
+    │           │   ├── DepartmentModel.java                   //部门模型   
+    │           │   ├── SqlCommitModel.java                    //数据提交模型   
+    │           │   ├── SqlModel.java                          //参数式SQL模型  
     │           │   └── UserModel.java                         //用户模型  
     │           ├── service                                      
     │           │   ├── DepartmentService.java                 //部门数据服务  
