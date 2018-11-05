@@ -2,6 +2,7 @@ package cn.albumenj.service;
 
 import cn.albumenj.dao.SqlCommit;
 import cn.albumenj.model.DepartmentModel;
+import cn.albumenj.model.SqlCommitModel;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -14,11 +15,17 @@ import java.util.Map;
 public class DepartmentService {
 
     public boolean add(DepartmentModel addDepartmentModel){
-        return SqlCommit.insert("department",departmentToData(addDepartmentModel));
+        SqlCommitModel sqlCommitModel = new SqlCommitModel();
+        sqlCommitModel.setTable("department");
+        sqlCommitModel.setData(departmentToData(addDepartmentModel));
+        return SqlCommit.insert(sqlCommitModel);
     }
 
     public boolean delete(DepartmentModel deleteDepartmentModel){
-        return SqlCommit.delete("department", deleteDepartmentModel.getNo());
+        SqlCommitModel sqlCommitModel = new SqlCommitModel();
+        sqlCommitModel.setTable("department");
+        sqlCommitModel.setNo(deleteDepartmentModel.getNo());
+        return SqlCommit.delete(sqlCommitModel);
     }
 
     public List<DepartmentModel> fetchAllDepartment(){
@@ -39,7 +46,11 @@ public class DepartmentService {
     }
 
     public boolean modify(DepartmentModel modifyDepartmentModel){
-        return SqlCommit.update("department", modifyDepartmentModel.getNo(),departmentToData(modifyDepartmentModel));
+        SqlCommitModel sqlCommitModel = new SqlCommitModel();
+        sqlCommitModel.setTable("department");
+        sqlCommitModel.setNo(modifyDepartmentModel.getNo());
+        sqlCommitModel.setData(departmentToData(modifyDepartmentModel));
+        return SqlCommit.update(sqlCommitModel);
     }
 
     private DepartmentModel dataToDepartment(Map<String,String> data){
@@ -59,7 +70,10 @@ public class DepartmentService {
     }
 
     private List<DepartmentModel> selectDepartmentData(Map<String,String> condition){
-        return dataListToDepartment(SqlCommit.selectWhere("department",condition));
+        SqlCommitModel sqlCommitModel = new SqlCommitModel();
+        sqlCommitModel.setTable("department");
+        sqlCommitModel.setCondition(condition);
+        return dataListToDepartment(SqlCommit.selectWhere(sqlCommitModel));
     }
 
     private Map<String,String> departmentToData(DepartmentModel DepartmentModel){

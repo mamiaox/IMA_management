@@ -1,6 +1,7 @@
 package cn.albumenj.service;
 
 import cn.albumenj.dao.SqlCommit;
+import cn.albumenj.model.SqlCommitModel;
 import cn.albumenj.model.UserModel;
 
 import java.util.LinkedHashMap;
@@ -13,7 +14,10 @@ import java.util.Map;
  */
 public class UserService {
     public boolean add(UserModel addUserModel){
-        return SqlCommit.insert("users",userToData(addUserModel));
+        SqlCommitModel sqlCommitModel = new SqlCommitModel();
+        sqlCommitModel.setTable("users");
+        sqlCommitModel.setData(userToData(addUserModel));
+        return SqlCommit.insert(sqlCommitModel);
     }
 
     public UserModel check(UserModel loginUserModel){
@@ -31,7 +35,10 @@ public class UserService {
     }
 
     public boolean delete(UserModel deleteUserModel){
-        return SqlCommit.delete("users", deleteUserModel.getNo());
+        SqlCommitModel sqlCommitModel = new SqlCommitModel();
+        sqlCommitModel.setTable("users");
+        sqlCommitModel.setNo(deleteUserModel.getNo());
+        return SqlCommit.delete(sqlCommitModel);
     }
 
     public List<UserModel> fetchAllUser(){
@@ -52,7 +59,11 @@ public class UserService {
         return new UserModel();
     }
     public boolean modify(UserModel modifyUserModel){
-        return SqlCommit.update("users", modifyUserModel.getNo(),userToData(modifyUserModel));
+        SqlCommitModel sqlCommitModel = new SqlCommitModel();
+        sqlCommitModel.setTable("users");
+        sqlCommitModel.setNo(modifyUserModel.getNo());
+        sqlCommitModel.setData(userToData(modifyUserModel));
+        return SqlCommit.update(sqlCommitModel);
     }
 
     private UserModel dataTOUser(Map<String,String> data){
@@ -77,7 +88,10 @@ public class UserService {
     }
 
     private List<UserModel> selectUserData(Map<String,String> condition){
-        return dataListToUser(SqlCommit.selectWhere("users",condition));
+        SqlCommitModel sqlCommitModel = new SqlCommitModel();
+        sqlCommitModel.setTable("users");
+        sqlCommitModel.setCondition(condition);
+        return dataListToUser(SqlCommit.selectWhere(sqlCommitModel));
     }
 
     private Map<String,String> userToData(UserModel UserModel){
